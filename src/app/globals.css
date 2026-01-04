@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* GAMAY Font - Add font files to public/fonts/ or use Adobe Fonts */
+@font-face {
+  font-family: 'Gamay';
+  src: url('/fonts/Gamay-Regular.woff2') format('woff2'),
+       url('/fonts/Gamay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   body {
     @apply bg-beechwood-navy text-beechwood-cream;

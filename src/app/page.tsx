@@ -40,8 +40,8 @@ export default function Home() {
                 className="rounded-lg"
               />
               <div>
-                <span className="text-xl font-bold bg-gradient-to-r from-beechwood-red to-pink-500 bg-clip-text text-transparent">
-                  Beechwood.ai
+                <span className="text-3xl font-bold text-emerald-400 font-gamay">
+                  beechwood.ai
                 </span>
               </div>
             </motion.div>
