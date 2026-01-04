@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
@@ -61,14 +60,8 @@ export default function Home() {
       <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-purple-500/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Image 
-              src="/icon.png" 
-              alt="Beechwood Logo" 
-              width={40} 
-              height={40}
-              className="rounded-lg"
-            />
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Beechwood.ai</span>
+            <Brain className="w-8 h-8 text-purple-400" />
+            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">beechwood.ai</span>
           </div>
           
           <div className="hidden md:flex items-center gap-8">
@@ -397,14 +390,8 @@ export default function Home() {
       <footer className="relative border-t border-purple-500/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Image 
-              src="/icon.png" 
-              alt="Beechwood Logo" 
-              width={32} 
-              height={32}
-              className="rounded-lg"
-            />
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent font-bold">Beechwood.ai</span>
+            <Brain className="w-7 h-7 text-purple-400" />
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent font-bold">beechwood.ai</span>
           </div>
           <p className="text-gray-500 text-sm">
             © {new Date().getFullYear()} Beechwood. Revolutionizing Technology.
