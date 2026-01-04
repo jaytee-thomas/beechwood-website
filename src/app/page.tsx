@@ -1,17 +1,29 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { AlertCircle, TrendingUp, Users, Calendar, Brain, Mail, MapPin } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { 
+  Shield, 
+  Users, 
+  MapPin, 
+  Eye, 
+  Clock, 
+  Bot,
+  ArrowRight,
+  Menu,
+  X,
+  Cpu,
+  Zap,
+  Brain,
+  Sparkles
+} from 'lucide-react';
 
 export default function Home() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  }
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const staggerContainer = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -19,362 +31,386 @@ export default function Home() {
         staggerChildren: 0.1
       }
     }
-  }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen bg-[#0a0a1f] relative overflow-hidden">
+      {/* Animated Grid Background */}
+      <div className="fixed inset-0 z-0">
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        
+        {/* Glowing Orbs */}
+        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]" />
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-beechwood-navy/80 backdrop-blur-lg border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3"
-            >
-              <Image 
-                src="/icon.png" 
-                alt="Beechwood Logo" 
-                width={40} 
-                height={40}
-                className="rounded-lg"
-              />
-              <div>
-                <span className="text-3xl font-bold text-emerald-400 font-gamay">
-                  beechwood.ai
-                </span>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="hidden md:flex space-x-8"
-            >
-              <a href="#products" className="hover:text-beechwood-red transition-colors">Products</a>
-              <a href="#about" className="hover:text-beechwood-red transition-colors">About</a>
-              <a href="#contact" className="hover:text-beechwood-red transition-colors">Contact</a>
-            </motion.div>
+      <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-purple-500/20 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Image 
+              src="/icon.png" 
+              alt="Beechwood Logo" 
+              width={40} 
+              height={40}
+              className="rounded-lg"
+            />
+            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Beechwood.ai</span>
           </div>
+          
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#products" className="text-gray-300 hover:text-purple-400 transition-colors">Products</a>
+            <a href="#about" className="text-gray-300 hover:text-purple-400 transition-colors">About</a>
+            <a href="#contact" className="text-gray-300 hover:text-purple-400 transition-colors">Contact</a>
+          </div>
+
+          <button 
+            className="md:hidden text-purple-400"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-[#0a0a1f]/95 backdrop-blur-xl border-t border-purple-500/20">
+            <div className="px-4 py-4 space-y-3">
+              <a href="#products" className="block text-gray-300 hover:text-purple-400 transition-colors">Products</a>
+              <a href="#about" className="block text-gray-300 hover:text-purple-400 transition-colors">About</a>
+              <a href="#contact" className="block text-gray-300 hover:text-purple-400 transition-colors">Contact</a>
+            </div>
+          </div>
+        )}
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-beechwood-navy via-beechwood-blue to-beechwood-navy animate-gradient -z-10" />
-        
-        <div className="max-w-7xl mx-auto text-center">
+      {/* AI REVOLUTION HERO SECTION */}
+      <div className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 z-10">
+        {/* Floating Hexagons */}
+        <motion.div
+          initial={{ opacity: 0, rotate: 0 }}
+          animate={{ opacity: 0.1, rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-40 right-20 w-32 h-32 border-2 border-purple-500/30"
+          style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+        />
+        <motion.div
+          initial={{ opacity: 0, rotate: 0 }}
+          animate={{ opacity: 0.1, rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-40 left-20 w-40 h-40 border-2 border-cyan-500/30"
+          style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+        />
+
+        <div className="relative max-w-7xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight">
-              Innovation at
-              <br />
-              <span className="bg-gradient-to-r from-beechwood-red via-pink-500 to-beechwood-mint bg-clip-text text-transparent">
-                Every Scale
+            {/* AI Badge */}
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/30 rounded-full mb-8 backdrop-blur-sm">
+              <Brain className="w-5 h-5 text-purple-400" />
+              <span className="text-sm font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent uppercase tracking-wider">
+                AI-Powered Revolution
               </span>
-            </h1>
-          </motion.div>
+              <Sparkles className="w-4 h-4 text-cyan-400" />
+            </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl sm:text-2xl text-beechwood-cream/80 max-w-3xl mx-auto mb-12"
-          >
-            From consumer apps to enterprise AI, we build technology that works in the real world
-          </motion.p>
+            {/* Main Headline - BOLD & FUTURISTIC */}
+            <motion.h1 variants={itemVariants} className="text-6xl sm:text-7xl md:text-8xl font-black text-white mb-6 leading-tight">
+              REVOLUTIONIZE
+              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-purple-400 animate-gradient">
+                WITH AI
+              </span>
+            </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <a
-              href="#products"
-              className="px-8 py-4 bg-beechwood-red hover:bg-beechwood-red/80 text-white font-bold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-beechwood-red/50"
-            >
-              See What We Build
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-4 bg-transparent border-2 border-beechwood-red text-beechwood-red hover:bg-beechwood-red/10 font-bold rounded-lg transition-all duration-300"
-            >
-              Let&#39;s Talk
-            </a>
+            {/* Subheadline */}
+            <motion.p variants={itemVariants} className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Transform your business with cutting-edge AI technology. From autonomous agents to intelligent systems—we build the future, today.
+            </motion.p>
+
+            {/* CTA Buttons - AGGRESSIVE STYLE */}
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+              <a 
+                href="#products"
+                className="group relative px-10 py-5 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold text-lg transition-all transform hover:scale-105 inline-flex items-center justify-center gap-3 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 overflow-hidden"
+              >
+                <span className="relative z-10">Start Revolution</span>
+                <Zap className="w-6 h-6 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+              <a 
+                href="#about"
+                className="px-10 py-5 bg-white/5 hover:bg-white/10 text-white rounded-lg font-bold text-lg transition-all border-2 border-purple-500/50 hover:border-purple-500 backdrop-blur-sm inline-flex items-center justify-center gap-3"
+              >
+                Explore Tech
+                <ArrowRight className="w-6 h-6" />
+              </a>
+            </motion.div>
+
+            {/* AI Stats - FUTURISTIC COUNTERS */}
+            <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              {[
+                { icon: Cpu, value: "6", label: "AI Solutions", color: "purple" },
+                { icon: Brain, value: "3", label: "Live Platforms", color: "cyan" },
+                { icon: Zap, value: "∞", label: "Possibilities", color: "purple" },
+                { icon: Bot, value: "24/7", label: "AI Support", color: "cyan" }
+              ].map((stat, index) => (
+                <div key={index} className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl blur-xl group-hover:blur-2xl transition-all" />
+                  <div className="relative bg-[#0a0a1f]/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-6 hover:border-purple-500/50 transition-all">
+                    <stat.icon className={`w-8 h-8 mb-3 mx-auto ${stat.color === 'purple' ? 'text-purple-400' : 'text-cyan-400'}`} />
+                    <div className={`text-4xl font-black mb-1 ${stat.color === 'purple' ? 'text-purple-400' : 'text-cyan-400'}`}>
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-400 uppercase tracking-wider">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Products Section */}
-      <section id="products" className="py-20 px-4 sm:px-6 lg:px-8 bg-beechwood-navy">
+      <div id="products" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-16"
+            variants={containerVariants}
           >
-            <h2 className="text-4xl sm:text-5xl font-black mb-4">Our Products</h2>
-            <p className="text-xl text-beechwood-cream/70">Solutions for every need</p>
-          </motion.div>
+            <motion.h2 variants={itemVariants} className="text-5xl font-black text-white mb-4 text-center">
+              OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">ARSENAL</span>
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-xl text-gray-300 mb-16 text-center max-w-3xl mx-auto">
+              Powerful solutions engineered for every scale
+            </motion.p>
 
-         {/* Consumer Apps */}
-         <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-20"
-          >
-            <h3 className="text-3xl font-bold mb-8 text-beechwood-mint">Consumer</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Link href="/products/beacon" className="h-full">
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-gradient-to-br from-beechwood-blue to-beechwood-navy p-8 rounded-2xl border border-white/10 hover:border-beechwood-red/50 transition-all duration-300 hover:scale-105 cursor-pointer h-full flex flex-col"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-beechwood-red/20 rounded-lg">
-                      <AlertCircle className="w-8 h-8 text-beechwood-red" />
+            {/* Consumer Apps */}
+            <motion.div variants={itemVariants} className="mb-16">
+              <h3 className="text-2xl font-bold text-purple-400 mb-8 uppercase tracking-wider">Consumer</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Beacon */}
+                <Link href="/products/beacon">
+                  <motion.div 
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="relative group bg-gradient-to-br from-[#0a0a1f] to-purple-900/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-red-500/50 transition-all cursor-pointer overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Shield className="w-12 h-12 text-red-500 mb-4 relative z-10" />
+                    <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Beacon</h4>
+                    <p className="text-gray-400 mb-4 relative z-10">Emergency response system. Instant safety at your command.</p>
+                    <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                      <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm border border-red-500/30">Emergency</span>
+                      <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm border border-red-500/30">iOS</span>
                     </div>
-                    <h4 className="text-2xl font-bold">Beacon</h4>
-                  </div>
-                  <p className="text-beechwood-cream/80 mb-4 flex-grow">
-                    Emergency response, reimagined. One-tap emergency recording and instant sharing with authorities.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-beechwood-red/20 rounded-full text-sm">Emergency Safety</span>
-                    <span className="px-3 py-1 bg-beechwood-red/20 rounded-full text-sm">Privacy-First</span>
-                    <span className="px-3 py-1 bg-beechwood-red/20 rounded-full text-sm">React Native</span>
-                  </div>
-                </motion.div>
-              </Link>
+                    <div className="flex items-center text-red-400 group-hover:gap-2 transition-all relative z-10">
+                      <span className="font-bold">DEPLOY →</span>
+                    </div>
+                  </motion.div>
+                </Link>
 
-              <Link href="/products/i65sports" className="h-full">
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-gradient-to-br from-beechwood-blue to-beechwood-navy p-8 rounded-2xl border border-white/10 hover:border-beechwood-red/50 transition-all duration-300 hover:scale-105 cursor-pointer h-full flex flex-col"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-beechwood-mint/20 rounded-lg">
-                      <TrendingUp className="w-8 h-8 text-beechwood-mint" />
+                {/* i65sports */}
+                <Link href="/products/i65sports">
+                  <motion.div 
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="relative group bg-gradient-to-br from-[#0a0a1f] to-purple-900/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-cyan-500/50 transition-all cursor-pointer overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/0 to-cyan-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Users className="w-12 h-12 text-cyan-400 mb-4 relative z-10" />
+                    <h4 className="text-2xl font-bold text-white mb-2 relative z-10">i65sports</h4>
+                    <p className="text-gray-400 mb-4 relative z-10">Social platform for sports fans. Connect and dominate.</p>
+                    <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                      <span className="px-3 py-1 bg-cyan-400/20 text-cyan-400 rounded-full text-sm border border-cyan-400/30">Social</span>
+                      <span className="px-3 py-1 bg-cyan-400/20 text-cyan-400 rounded-full text-sm border border-cyan-400/30">Sports</span>
                     </div>
-                    <h4 className="text-2xl font-bold">i65sports</h4>
-                  </div>
-                  <p className="text-beechwood-cream/80 mb-4 flex-grow">
-                    Where sports fans connect. Social platform for real-time video takes, live game chat, and betting odds.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-beechwood-mint/20 rounded-full text-sm">Social Platform</span>
-                    <span className="px-3 py-1 bg-beechwood-mint/20 rounded-full text-sm">Live Streaming</span>
-                    <span className="px-3 py-1 bg-beechwood-mint/20 rounded-full text-sm">Next.js</span>
-                  </div>
-                </motion.div>
-              </Link>
+                    <div className="flex items-center text-cyan-400 group-hover:gap-2 transition-all relative z-10">
+                      <span className="font-bold">DEPLOY →</span>
+                    </div>
+                  </motion.div>
+                </Link>
 
-              <Link href="/products/where2gonashville" className="h-full">
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-gradient-to-br from-beechwood-blue to-beechwood-navy p-8 rounded-2xl border border-white/10 hover:border-beechwood-red/50 transition-all duration-300 hover:scale-105 cursor-pointer h-full flex flex-col"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-yellow-500/20 rounded-lg">
-                      <MapPin className="w-8 h-8 text-yellow-400" />
+                {/* Where2GoNashville */}
+                <Link href="/products/where2gonashville">
+                  <motion.div 
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="relative group bg-gradient-to-br from-[#0a0a1f] to-purple-900/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all cursor-pointer overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/0 to-yellow-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <MapPin className="w-12 h-12 text-yellow-400 mb-4 relative z-10" />
+                    <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Where2GoNashville</h4>
+                    <p className="text-gray-400 mb-4 relative z-10">Real-time event discovery. Never miss the action.</p>
+                    <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                      <span className="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm border border-yellow-400/30">Events</span>
+                      <span className="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm border border-yellow-400/30">Live</span>
                     </div>
-                    <h4 className="text-2xl font-bold">Where2GoNashville</h4>
-                  </div>
-                  <p className="text-beechwood-cream/80 mb-4 flex-grow">
-                    Discover Nashville events in real-time. Universal mobile app for finding live music, food festivals, and local happenings.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-yellow-500/20 rounded-full text-sm">Events Discovery</span>
-                    <span className="px-3 py-1 bg-yellow-500/20 rounded-full text-sm">React Native</span>
-                    <span className="px-3 py-1 bg-yellow-500/20 rounded-full text-sm">Cross-Platform</span>
-                  </div>
-                </motion.div>
-              </Link>
-            </div>
-          </motion.div>
-          {/* Business Solutions */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-20"
-          >
-            <h3 className="text-3xl font-bold mb-8 text-beechwood-red">Business</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Link href="/products/visual-counter">
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-gradient-to-br from-beechwood-blue to-beechwood-navy p-8 rounded-2xl border border-white/10 hover:border-beechwood-red/50 transition-all duration-300 hover:scale-105 cursor-pointer"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-purple-500/20 rounded-lg">
-                      <Users className="w-8 h-8 text-purple-400" />
+                    <div className="flex items-center text-yellow-400 group-hover:gap-2 transition-all relative z-10">
+                      <span className="font-bold">DEPLOY →</span>
                     </div>
-                    <h4 className="text-2xl font-bold">Visual Counter</h4>
-                  </div>
-                  <p className="text-beechwood-cream/80 mb-4">
-                    AI-powered people counting. Computer vision system with iOS app, web dashboard, analytics, and offline sync.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-purple-500/20 rounded-full text-sm">Computer Vision</span>
-                    <span className="px-3 py-1 bg-purple-500/20 rounded-full text-sm">Swift</span>
-                    <span className="px-3 py-1 bg-purple-500/20 rounded-full text-sm">React</span>
-                  </div>
-                </motion.div>
-              </Link>
-
-              <Link href="/products/clock-work">
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-gradient-to-br from-beechwood-blue to-beechwood-navy p-8 rounded-2xl border border-white/10 hover:border-beechwood-red/50 transition-all duration-300 hover:scale-105 cursor-pointer"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-orange-500/20 rounded-lg">
-                      <Calendar className="w-8 h-8 text-orange-400" />
-                    </div>
-                    <h4 className="text-2xl font-bold">Clock Work</h4>
-                  </div>
-                  <p className="text-beechwood-cream/80 mb-4">
-                    Workforce scheduling made simple. 3-tier hierarchy for shift management with first-come-first-serve claiming.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-orange-500/20 rounded-full text-sm">PWA</span>
-                    <span className="px-3 py-1 bg-orange-500/20 rounded-full text-sm">Mobile + Web</span>
-                    <span className="px-3 py-1 bg-orange-500/20 rounded-full text-sm">TypeScript</span>
-                  </div>
-                </motion.div>
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Enterprise Platform */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <h3 className="text-3xl font-bold mb-8 text-blue-400">Enterprise</h3>
-            <Link href="/products/beechwood-os">
-              <div className="bg-gradient-to-br from-blue-900/30 via-beechwood-blue to-beechwood-navy p-12 rounded-2xl border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 cursor-pointer">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-4 bg-blue-500/20 rounded-xl">
-                    <Brain className="w-12 h-12 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-3xl font-bold mb-2">Beechwood OS</h4>
-                    <p className="text-blue-300">AI-Augmented Corporation Operating System</p>
-                  </div>
-                </div>
-                <p className="text-beechwood-cream/80 text-lg mb-6">
-                  Revolutionary AI platform with specialized &quot;AI employees&quot; (Security AI, Engineering AI) that collaborate like a real company. Each AI agent has domain expertise powered by Claude Sonnet 4.
-                </p>
-                <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                  <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                    <h5 className="font-bold mb-2 text-blue-300">🔒 Security AI</h5>
-                    <p className="text-sm text-beechwood-cream/70">Emergency systems, security protocols, privacy architecture</p>
-                  </div>
-                  <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                    <h5 className="font-bold mb-2 text-blue-300">⚙️ Engineering AI</h5>
-                    <p className="text-sm text-beechwood-cream/70">Code generation, architecture design, technical implementation</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-blue-500/20 rounded-full text-sm">Python</span>
-                  <span className="px-3 py-1 bg-blue-500/20 rounded-full text-sm">FastAPI</span>
-                  <span className="px-3 py-1 bg-blue-500/20 rounded-full text-sm">Claude AI</span>
-                  <span className="px-3 py-1 bg-blue-500/20 rounded-full text-sm">Multi-Agent</span>
-                </div>
+                  </motion.div>
+                </Link>
               </div>
-            </Link>
+            </motion.div>
+
+            {/* Business Solutions */}
+            <motion.div variants={itemVariants} className="mb-16">
+              <h3 className="text-2xl font-bold text-cyan-400 mb-8 uppercase tracking-wider">Business</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Visual Counter */}
+                <Link href="/products/visual-counter">
+                  <motion.div 
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="relative group bg-gradient-to-br from-[#0a0a1f] to-purple-900/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-purple-400/50 transition-all cursor-pointer overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Eye className="w-12 h-12 text-purple-400 mb-4 relative z-10" />
+                    <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Visual Counter</h4>
+                    <p className="text-gray-400 mb-4 relative z-10">AI-powered analytics. See everything.</p>
+                    <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                      <span className="px-3 py-1 bg-purple-400/20 text-purple-400 rounded-full text-sm border border-purple-400/30">AI Vision</span>
+                      <span className="px-3 py-1 bg-purple-400/20 text-purple-400 rounded-full text-sm border border-purple-400/30">Analytics</span>
+                    </div>
+                    <div className="flex items-center text-purple-400 group-hover:gap-2 transition-all relative z-10">
+                      <span className="font-bold">DEPLOY →</span>
+                    </div>
+                  </motion.div>
+                </Link>
+
+                {/* Clock Work */}
+                <Link href="/products/clock-work">
+                  <motion.div 
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="relative group bg-gradient-to-br from-[#0a0a1f] to-purple-900/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-orange-400/50 transition-all cursor-pointer overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-600/0 to-orange-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Clock className="w-12 h-12 text-orange-400 mb-4 relative z-10" />
+                    <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Clock Work</h4>
+                    <p className="text-gray-400 mb-4 relative z-10">Intelligent scheduling. Maximum efficiency.</p>
+                    <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                      <span className="px-3 py-1 bg-orange-400/20 text-orange-400 rounded-full text-sm border border-orange-400/30">Scheduling</span>
+                      <span className="px-3 py-1 bg-orange-400/20 text-orange-400 rounded-full text-sm border border-orange-400/30">SaaS</span>
+                    </div>
+                    <div className="flex items-center text-orange-400 group-hover:gap-2 transition-all relative z-10">
+                      <span className="font-bold">DEPLOY →</span>
+                    </div>
+                  </motion.div>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Enterprise */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-2xl font-bold text-purple-400 mb-8 uppercase tracking-wider">Enterprise</h3>
+              <Link href="/products/beechwood-os">
+                <motion.div 
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="relative group bg-gradient-to-br from-[#0a0a1f] to-purple-900/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-blue-400/50 transition-all cursor-pointer overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/0 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Bot className="w-12 h-12 text-blue-400 mb-4 relative z-10" />
+                  <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Beechwood OS</h4>
+                  <p className="text-gray-400 mb-4 relative z-10">AI-augmented enterprise OS. Autonomous intelligence.</p>
+                  <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                    <span className="px-3 py-1 bg-blue-400/20 text-blue-400 rounded-full text-sm border border-blue-400/30">AI Agents</span>
+                    <span className="px-3 py-1 bg-blue-400/20 text-blue-400 rounded-full text-sm border border-blue-400/30">Enterprise</span>
+                  </div>
+                  <div className="flex items-center text-blue-400 group-hover:gap-2 transition-all relative z-10">
+                    <span className="font-bold">DEPLOY →</span>
+                  </div>
+                </motion.div>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-beechwood-blue to-beechwood-navy">
+      <div id="about" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={fadeInUp}
+            variants={containerVariants}
           >
-            <h2 className="text-4xl sm:text-5xl font-black mb-8 text-center">About Beechwood</h2>
-            <div className="bg-beechwood-navy/50 p-8 rounded-2xl border border-white/10">
-              <p className="text-lg text-beechwood-cream/80 mb-6 leading-relaxed">
-                Beechwood started with a simple idea: build technology that solves real problems for real people. Named after Beechwood PL, the street where our founder grew up, we bring that same sense of home and authenticity to everything we create.
-              </p>
-              <p className="text-lg text-beechwood-cream/80 mb-6 leading-relaxed">
-                From emergency safety apps that could save lives, to AI systems that reimagine how companies operate, we&#39;re building at every scale. Whether it&#39;s helping sports fans connect in real-time, or giving businesses the tools to count crowds and manage schedules efficiently, our focus is always on innovation that matters.
-              </p>
-              <p className="text-lg text-beechwood-cream/80 leading-relaxed">
-                We don&#39;t just build apps. We build solutions. And we&#39;re just getting started.
-              </p>
+            <motion.h2 variants={itemVariants} className="text-5xl font-black text-white mb-12 text-center">
+              BUILT ON <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">BEECHWOOD PL</span>
+            </motion.h2>
+            <div className="space-y-6 text-gray-300 text-lg">
+              <motion.p variants={itemVariants}>
+                Beechwood isn't just a company—it's a revolution in technology. Named after the street where our journey began, we carry forward the values of innovation, excellence, and relentless progress.
+              </motion.p>
+              <motion.p variants={itemVariants}>
+                From life-saving emergency systems to AI platforms that transform enterprises, every product we build pushes boundaries. We don't follow trends—we create them.
+              </motion.p>
+              <motion.p variants={itemVariants}>
+                Whether you're an individual, a business, or a global enterprise, Beechwood delivers solutions engineered for tomorrow, deployed today.
+              </motion.p>
             </div>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-beechwood-navy">
-        <div className="max-w-4xl mx-auto text-center">
+      <div id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/20 z-10">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={fadeInUp}
+            variants={containerVariants}
           >
-            <h2 className="text-4xl sm:text-5xl font-black mb-6">Let&#39;s Build Together</h2>
-            <p className="text-xl text-beechwood-cream/80 mb-12">
-              Have an idea? Need a solution? Let&#39;s talk about how Beechwood can help.
-            </p>
-            <a
+            <motion.h2 variants={itemVariants} className="text-5xl font-black text-white mb-6">
+              JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">REVOLUTION</span>
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-xl text-gray-300 mb-8">
+              Ready to transform your organization with AI? Let's build the future together.
+            </motion.p>
+            <motion.a 
+              variants={itemVariants}
               href="mailto:hello@beechwood.ai"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-beechwood-red hover:bg-beechwood-red/80 text-white font-bold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-beechwood-red/50"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
             >
-              <Mail className="w-5 h-5" />
-              Get In Touch
-            </a>
+              <span>Contact Us</span>
+              <Zap className="w-6 h-6" />
+            </motion.a>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-beechwood-navy border-t border-white/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left flex items-center gap-3">
-              <Image 
-                src="/icon.png" 
-                alt="Beechwood Logo" 
-                width={48} 
-                height={48}
-                className="rounded-lg"
-              />
-              <div>
-                <h3 className="text-2xl font-bold mb-1">
-                  <span className="bg-gradient-to-r from-beechwood-red to-pink-500 bg-clip-text text-transparent">
-                    Beechwood.ai
-                  </span>
-                </h3>
-                <p className="text-beechwood-cream/60">Innovation at Every Scale</p>
-              </div>
-            </div>
-            <div className="text-center text-beechwood-cream/60">
-              <p>© 2025 Beechwood. All rights reserved.</p>
-            </div>
+      <footer className="relative border-t border-purple-500/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <Image 
+              src="/icon.png" 
+              alt="Beechwood Logo" 
+              width={32} 
+              height={32}
+              className="rounded-lg"
+            />
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent font-bold">Beechwood.ai</span>
           </div>
+          <p className="text-gray-500 text-sm">
+            © {new Date().getFullYear()} Beechwood. Revolutionizing Technology.
+          </p>
         </div>
       </footer>
-    </main>
-  )
+    </div>
+  );
 }
