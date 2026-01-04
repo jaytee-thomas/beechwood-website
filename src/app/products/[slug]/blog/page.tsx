@@ -1,13 +1,22 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Calendar } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 
-// Same product data
-const products = {
+type BlogEntry = {
+  date: string;
+  title: string;
+  content: string;
+};
+
+// Same default blog data
+const productsDefaultBlog = {
   'beacon': {
     name: 'Beacon',
     color: 'red',
-    blog: [
+    defaultBlog: [
       {
         date: '2026-01-03',
         title: 'Emergency Alert System Complete',
@@ -28,7 +37,7 @@ const products = {
   'i65sports': {
     name: 'i65sports',
     color: 'mint',
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-20',
         title: 'Social Feed & Real-time Updates',
@@ -44,7 +53,7 @@ const products = {
   'where2gonashville': {
     name: 'Where2GoNashville',
     color: 'yellow',
-    blog: [
+    defaultBlog: [
       {
         date: '2026-01-02',
         title: 'Beta Testing in Nashville',
@@ -65,7 +74,7 @@ const products = {
   'visual-counter': {
     name: 'Visual Counter',
     color: 'purple',
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-28',
         title: 'Client Deployments & Real-world Testing',
@@ -81,7 +90,7 @@ const products = {
   'clock-work': {
     name: 'Clock Work',
     color: 'orange',
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-30',
         title: 'Launch Week - 50+ Companies Onboarded',
@@ -102,7 +111,7 @@ const products = {
   'beechwood-os': {
     name: 'Beechwood OS',
     color: 'blue',
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-22',
         title: 'First AI Agent Prototypes',
@@ -135,17 +144,61 @@ function formatDate(dateString: string) {
   });
 }
 
-export function generateStaticParams() {
-  return Object.keys(products).map((slug) => ({
-    slug: slug,
-  }));
-}
+export default function BlogPage() {
+  const params = useParams();
+  const slug = params.slug as string;
+  const [allBlogEntries, setAllBlogEntries] = useState<BlogEntry[]>([]);
+  
+  const product = productsDefaultBlog[slug as keyof typeof productsDefaultBlog];
 
-export default async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const product = products[slug as keyof typeof products];
+  // Load blog entries from localStorage and merge with defaults
+  useEffect(() => {
+    const loadBlogEntries = () => {
+      const saved = localStorage.getItem('beechwood-blog-entries');
+      let customEntries: BlogEntry[] = [];
+      
+      if (saved) {
+        try {
+          const allSaved = JSON.parse(saved);
+          customEntries = allSaved[slug] || [];
+        } catch (e) {
+          console.error('Error loading blog entries:', e);
+        }
+      }
 
-  if (!product || !product.blog) {
+      // Merge custom entries with default entries
+      const defaultEntries = product?.defaultBlog || [];
+      const combined = [...customEntries, ...defaultEntries];
+      
+      // Sort by date (newest first)
+      combined.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      
+      setAllBlogEntries(combined);
+    };
+
+    if (product) {
+      loadBlogEntries();
+
+      // Listen for storage changes
+      const handleStorageChange = () => {
+        loadBlogEntries();
+      };
+
+      window.addEventListener('storage', handleStorageChange);
+      window.addEventListener('blogUpdated', handleStorageChange);
+
+      // Poll for changes (since same-window localStorage changes don't trigger storage event)
+      const interval = setInterval(loadBlogEntries, 1000);
+
+      return () => {
+        window.removeEventListener('storage', handleStorageChange);
+        window.removeEventListener('blogUpdated', handleStorageChange);
+        clearInterval(interval);
+      };
+    }
+  }, [slug, product]);
+
+  if (!product) {
     notFound();
   }
 
@@ -194,7 +247,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 
             {/* Blog entries */}
             <div className="space-y-12">
-              {product.blog.map((entry, index) => (
+              {allBlogEntries.map((entry, index) => (
                 <div key={index} className="relative pl-20">
                   {/* Timeline dot */}
                   <div className={`absolute left-6 top-2 w-5 h-5 rounded-full border-4 ${colorClass} bg-[#0a0a1f]`} />

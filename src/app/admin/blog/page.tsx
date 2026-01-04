@@ -80,6 +80,10 @@ export default function BlogAdmin() {
     setTitle('');
     setContent('');
     setShowForm(false);
+    
+    // Dispatch custom event to notify other windows/tabs
+    window.dispatchEvent(new Event('blogUpdated'));
+    
     alert('Blog entry added! (Note: This is saved in browser storage. Export to code for permanent storage.)');
   };
 
@@ -89,6 +93,9 @@ export default function BlogAdmin() {
       const updatedData = { ...blogData };
       updatedData[productSlug].splice(index, 1);
       saveBlogData(updatedData);
+      
+      // Dispatch custom event to notify other windows/tabs
+      window.dispatchEvent(new Event('blogUpdated'));
     }
   };
 

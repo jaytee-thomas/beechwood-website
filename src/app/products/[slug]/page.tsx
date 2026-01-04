@@ -1,6 +1,9 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Github, Calendar, ArrowRight, Brain } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 
 // Language colors (GitHub-style)
 const languageColors: { [key: string]: string } = {
@@ -27,7 +30,7 @@ type BlogEntry = {
   content: string;
 };
 
-// Product data with completion %, languages, and blog entries
+// Product data with completion %, languages, and DEFAULT blog entries
 const products = {
   'beacon': {
     name: 'Beacon',
@@ -41,7 +44,7 @@ const products = {
       { name: 'TypeScript', percentage: 30 },
       { name: 'Kotlin', percentage: 15 },
     ],
-    blog: [
+    defaultBlog: [
       {
         date: '2026-01-03',
         title: 'Emergency Alert System Complete',
@@ -85,7 +88,7 @@ const products = {
       { name: 'TypeScript', percentage: 25 },
       { name: 'Node.js', percentage: 10 },
     ],
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-20',
         title: 'Social Feed & Real-time Updates',
@@ -124,7 +127,7 @@ const products = {
       { name: 'TypeScript', percentage: 20 },
       { name: 'Python', percentage: 10 },
     ],
-    blog: [
+    defaultBlog: [
       {
         date: '2026-01-02',
         title: 'Beta Testing in Nashville',
@@ -168,7 +171,7 @@ const products = {
       { name: 'TypeScript', percentage: 25 },
       { name: 'C++', percentage: 15 },
     ],
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-28',
         title: 'Client Deployments & Real-world Testing',
@@ -207,7 +210,7 @@ const products = {
       { name: 'React', percentage: 35 },
       { name: 'Python', percentage: 20 },
     ],
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-30',
         title: 'Launch Week - 50+ Companies Onboarded',
@@ -251,7 +254,7 @@ const products = {
       { name: 'TypeScript', percentage: 30 },
       { name: 'Rust', percentage: 20 },
     ],
-    blog: [
+    defaultBlog: [
       {
         date: '2025-12-22',
         title: 'First AI Agent Prototypes',
@@ -288,12 +291,6 @@ const colorClasses = {
   orange: 'from-orange-500/20 to-orange-600/20 border-orange-500/30 text-orange-400',
   blue: 'from-blue-500/20 to-blue-600/20 border-blue-500/30 text-blue-400'
 };
-
-export function generateStaticParams() {
-  return Object.keys(products).map((slug) => ({
-    slug: slug,
-  }));
-}
 
 // Circular Progress Component
 function CircularProgress({ percentage }: { percentage: number }) {
@@ -377,16 +374,68 @@ function formatDate(dateString: string) {
   });
 }
 
-export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default function ProductPage() {
+  const params = useParams();
+  const slug = params.slug as string;
+  const [allBlogEntries, setAllBlogEntries] = useState<BlogEntry[]>([]);
+  
   const product = products[slug as keyof typeof products];
+
+  // Load blog entries from localStorage and merge with defaults
+  useEffect(() => {
+    const loadBlogEntries = () => {
+      const saved = localStorage.getItem('beechwood-blog-entries');
+      let customEntries: BlogEntry[] = [];
+      
+      if (saved) {
+        try {
+          const allSaved = JSON.parse(saved);
+          customEntries = allSaved[slug] || [];
+        } catch (e) {
+          console.error('Error loading blog entries:', e);
+        }
+      }
+
+      // Merge custom entries with default entries
+      const defaultEntries = product?.defaultBlog || [];
+      const combined = [...customEntries, ...defaultEntries];
+      
+      // Sort by date (newest first)
+      combined.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      
+      setAllBlogEntries(combined);
+    };
+
+    if (product) {
+      loadBlogEntries();
+
+      // Listen for storage changes (when blog admin adds entries)
+      const handleStorageChange = () => {
+        loadBlogEntries();
+      };
+
+      window.addEventListener('storage', handleStorageChange);
+      
+      // Also listen for custom event from same window
+      window.addEventListener('blogUpdated', handleStorageChange);
+
+      // Poll for changes (since same-window localStorage changes don't trigger storage event)
+      const interval = setInterval(loadBlogEntries, 1000);
+
+      return () => {
+        window.removeEventListener('storage', handleStorageChange);
+        window.removeEventListener('blogUpdated', handleStorageChange);
+        clearInterval(interval);
+      };
+    }
+  }, [slug, product]);
 
   if (!product) {
     notFound();
   }
 
   const colorClass = colorClasses[product.color as keyof typeof colorClasses];
-  const latestUpdates = product.blog?.slice(0, 2) || [];
+  const latestUpdates = allBlogEntries.slice(0, 2);
 
   return (
     <div className="min-h-screen bg-[#0a0a1f] relative overflow-hidden">
@@ -484,7 +533,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </div>
 
       {/* Latest Development Updates */}
-      {product.blog && product.blog.length > 0 && (
+      {allBlogEntries.length > 0 && (
         <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
@@ -517,13 +566,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
 
-            {product.blog.length > 2 && (
+            {allBlogEntries.length > 2 && (
               <div className="text-center">
                 <Link
                   href={`/products/${slug}/blog`}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
                 >
-                  View All Updates ({product.blog.length})
+                  View All Updates ({allBlogEntries.length})
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>

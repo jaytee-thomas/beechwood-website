@@ -16,7 +16,8 @@ import {
   Cpu,
   Zap,
   Brain,
-  Sparkles
+  Sparkles,
+  Lock
 } from 'lucide-react';
 
 export default function Home() {
@@ -68,6 +69,10 @@ export default function Home() {
             <a href="#products" className="text-gray-300 hover:text-purple-400 transition-colors">Products</a>
             <a href="#about" className="text-gray-300 hover:text-purple-400 transition-colors">About</a>
             <a href="#contact" className="text-gray-300 hover:text-purple-400 transition-colors">Contact</a>
+            <Link href="/admin/blog" className="flex items-center gap-1.5 text-gray-300 hover:text-purple-400 transition-colors">
+              <Lock className="w-4 h-4" />
+              <span>Admin</span>
+            </Link>
           </div>
 
           <button 
@@ -84,6 +89,10 @@ export default function Home() {
               <a href="#products" className="block text-gray-300 hover:text-purple-400 transition-colors">Products</a>
               <a href="#about" className="block text-gray-300 hover:text-purple-400 transition-colors">About</a>
               <a href="#contact" className="block text-gray-300 hover:text-purple-400 transition-colors">Contact</a>
+              <Link href="/admin/blog" className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors">
+                <Lock className="w-4 h-4" />
+                <span>Admin</span>
+              </Link>
             </div>
           </div>
         )}
