@@ -191,6 +191,7 @@ export default function VisualCounterPage() {
   const [allBlogEntries, setAllBlogEntries] = useState<BlogEntry[]>([]);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [videoStarted, setVideoStarted] = useState(false);
 
   // Load blog entries from localStorage and merge with defaults
   useEffect(() => {
@@ -494,15 +495,71 @@ export default function VisualCounterPage() {
               </div>
             </div>
             
-            <div className="relative aspect-video rounded-lg overflow-hidden bg-black/50">
+            <div className="relative aspect-video rounded-lg overflow-hidden bg-black/50 group">
+              {/* Video Poster/Thumbnail */}
+              {!videoStarted && (
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 flex items-center justify-center cursor-pointer z-10 transition-opacity hover:opacity-80"
+                  onClick={() => setVideoStarted(true)}
+                >
+                  <div className="text-center">
+                    <div className="w-24 h-24 bg-purple-600/80 rounded-full flex items-center justify-center mb-4 mx-auto hover:bg-purple-600 transition-all transform hover:scale-110">
+                      <Play className="w-12 h-12 text-white ml-1" />
+                    </div>
+                    <p className="text-white font-bold text-lg">Click to Play Video</p>
+                  </div>
+                </div>
+              )}
+              
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1"
+                src={videoStarted ? "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1&autoplay=1" : "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1"}
                 title="Visual Counter AI Demo"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
+                onLoad={() => setVideoStarted(true)}
               />
+            </div>
+            
+            {/* Video Chapters/Timestamps */}
+            <div className="mt-4 flex flex-wrap gap-3 justify-center">
+              <button 
+                onClick={() => {
+                  setVideoStarted(true);
+                  const iframe = document.querySelector('iframe[title="Visual Counter AI Demo"]') as HTMLIFrameElement;
+                  if (iframe) {
+                    iframe.src = "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1&autoplay=1&t=0";
+                  }
+                }}
+                className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 rounded-full text-sm text-purple-400 font-bold transition-all transform hover:scale-105"
+              >
+                0:00 Introduction
+              </button>
+              <button 
+                onClick={() => {
+                  setVideoStarted(true);
+                  const iframe = document.querySelector('iframe[title="Visual Counter AI Demo"]') as HTMLIFrameElement;
+                  if (iframe) {
+                    iframe.src = "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1&autoplay=1&t=15";
+                  }
+                }}
+                className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 rounded-full text-sm text-purple-400 font-bold transition-all transform hover:scale-105"
+              >
+                0:15 Live Counting
+              </button>
+              <button 
+                onClick={() => {
+                  setVideoStarted(true);
+                  const iframe = document.querySelector('iframe[title="Visual Counter AI Demo"]') as HTMLIFrameElement;
+                  if (iframe) {
+                    iframe.src = "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1&autoplay=1&t=30";
+                  }
+                }}
+                className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 rounded-full text-sm text-purple-400 font-bold transition-all transform hover:scale-105"
+              >
+                0:30 Results
+              </button>
             </div>
             
             <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
