@@ -45,11 +45,11 @@ export default function DemoModal({ isOpen, onClose, children, title }: DemoModa
       />
       
       {/* Modal Content */}
-      <div className="relative w-full h-full max-w-7xl max-h-[90vh] m-4 bg-[#0a0a1f] border border-purple-500/30 rounded-2xl overflow-hidden shadow-2xl shadow-purple-500/20">
+      <div className="relative w-full h-full max-w-7xl max-h-[90vh] m-4 bg-[#0a0a1f] border border-beechwood-main/30 rounded-2xl overflow-hidden shadow-2xl shadow-beechwood-main/20">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-purple-500/20">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-beechwood-main/20">
           <h2 className="text-2xl font-black text-white flex items-center gap-3">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">
               {title}
             </span>
             <span className="text-sm font-normal text-gray-500">Live Demo</span>
@@ -70,3 +70,4 @@ export default function DemoModal({ isOpen, onClose, children, title }: DemoModa
     </div>
   );
 }
+

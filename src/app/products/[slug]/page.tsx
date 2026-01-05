@@ -305,7 +305,7 @@ const colorClasses = {
   red: 'from-red-500/20 to-red-600/20 border-red-500/30 text-red-400',
   mint: 'from-emerald-500/20 to-emerald-600/20 border-emerald-500/30 text-emerald-400',
   yellow: 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30 text-yellow-400',
-  purple: 'from-purple-500/20 to-purple-600/20 border-purple-500/30 text-purple-400',
+  purple: 'from-beechwood-main/20 to-beechwood-sage/20 border-beechwood-main/30 text-beechwood-sage',
   orange: 'from-orange-500/20 to-orange-600/20 border-orange-500/30 text-orange-400',
   blue: 'from-blue-500/20 to-blue-600/20 border-blue-500/30 text-blue-400'
 };
@@ -326,7 +326,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
           stroke="currentColor"
           strokeWidth="12"
           fill="none"
-          className="text-purple-500/20"
+          className="text-beechwood-main/20"
         />
         <circle
           cx="80"
@@ -337,7 +337,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
           fill="none"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          className="text-purple-400 transition-all duration-1000 ease-out"
+          className="text-beechwood-sage transition-all duration-1000 ease-out"
           strokeLinecap="round"
         />
       </svg>
@@ -495,9 +495,9 @@ export default function ProductPage() {
     <div className="min-h-screen bg-[#0a0a1f] relative overflow-hidden">
       {/* Animated Grid Background */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(45,106,79,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(45,106,79,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-beechwood-main/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-beechwood-sage/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Demo Modal */}
@@ -529,9 +529,9 @@ export default function ProductPage() {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-purple-500/20 z-50">
+      <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-beechwood-main/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors">
+          <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-beechwood-sage transition-colors">
             <ArrowLeft className="w-5 h-5" />
             <span className="font-bold">Back to Home</span>
           </Link>
@@ -544,9 +544,9 @@ export default function ProductPage() {
       {/* Hero Section */}
       <div className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full mb-6 backdrop-blur-sm">
-            <Brain className="w-4 h-4 text-purple-400" />
-            <span className="text-sm font-bold text-purple-400 uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-beechwood-main/10 border border-beechwood-main/30 rounded-full mb-6 backdrop-blur-sm">
+            <Brain className="w-4 h-4 text-beechwood-sage" />
+            <span className="text-sm font-bold text-beechwood-sage uppercase tracking-wider">
               {product.category}
             </span>
           </div>
@@ -564,7 +564,7 @@ export default function ProductPage() {
             {product.cta.primary && (
               <a
                 href={product.cta.primary.link}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg shadow-purple-500/50"
+                className="px-8 py-4 bg-gradient-to-r from-beechwood-main to-beechwood-sage text-white rounded-lg font-bold transition-all transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg shadow-beechwood-main/50"
               >
                 {product.cta.primary.text}
                 <ExternalLink className="w-5 h-5" />
@@ -573,7 +573,7 @@ export default function ProductPage() {
             {product.cta.secondary && (
               <a
                 href={product.cta.secondary.link}
-                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-lg font-bold transition-all border-2 border-purple-500/50 hover:border-purple-500"
+                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-lg font-bold transition-all border-2 border-beechwood-main/50 hover:border-beechwood-main"
               >
                 {product.cta.secondary.text}
               </a>
@@ -583,10 +583,10 @@ export default function ProductPage() {
       </div>
 
       {/* Development Progress Section */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-beechwood-forest/10 z-10">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-            Development <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Progress</span>
+            Development <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">Progress</span>
           </h2>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -600,9 +600,9 @@ export default function ProductPage() {
               </p>
             </div>
 
-            <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8">
+            <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8">
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <Github className="w-5 h-5 text-purple-400" />
+                <Github className="w-5 h-5 text-beechwood-sage" />
                 Tech Stack Distribution
               </h3>
               <LanguageBar languages={product.languages} />
@@ -619,17 +619,17 @@ export default function ProductPage() {
         <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Updates</span>
+              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">Updates</span>
             </h2>
             
             <div className="space-y-6 mb-8">
               {latestUpdates.map((entry, index) => (
                 <div
                   key={index}
-                  className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-purple-500/50 transition-all"
+                  className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-beechwood-main/50 transition-all"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <Calendar className="w-5 h-5 text-purple-400 flex-shrink-0 mt-1" />
+                    <Calendar className="w-5 h-5 text-beechwood-sage flex-shrink-0 mt-1" />
                     <div className="flex-1">
                       <div className="flex items-start justify-between gap-4 mb-2">
                         <h3 className="text-xl font-bold text-white">
@@ -652,7 +652,7 @@ export default function ProductPage() {
               <div className="text-center">
                 <Link
                   href={`/products/${slug}/blog`}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-beechwood-main to-beechwood-sage text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-beechwood-main/50"
                 >
                   View All Updates ({allBlogEntries.length})
                   <ArrowRight className="w-5 h-5" />
@@ -664,19 +664,19 @@ export default function ProductPage() {
       )}
 
       {/* Features Section */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-beechwood-forest/10 z-10">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-            Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Features</span>
+            Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">Features</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {product.features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/50 transition-all"
+                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-lg p-6 hover:border-beechwood-main/50 transition-all"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-beechwood-sage mt-2 flex-shrink-0" />
                   <p className="text-gray-300 text-lg">{feature}</p>
                 </div>
               </div>
@@ -689,13 +689,13 @@ export default function ProductPage() {
       <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-black text-white mb-8 uppercase tracking-wider">
-            Built <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">With</span>
+            Built <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">With</span>
           </h2>
           <div className="flex flex-wrap gap-3 justify-center">
             {product.tech.map((tech, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full text-gray-300 text-sm font-bold backdrop-blur-sm"
+                className="px-4 py-2 bg-beechwood-main/10 border border-beechwood-main/30 rounded-full text-gray-300 text-sm font-bold backdrop-blur-sm"
               >
                 {tech}
               </span>
@@ -705,22 +705,22 @@ export default function ProductPage() {
       </div>
 
       {/* SCREENSHOTS & DEMO SECTION - COMBINED */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-beechwood-forest/10 z-10">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-            See It <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">In Action</span>
+            See It <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">In Action</span>
           </h2>
           
           {/* Interactive Demo Button */}
           <button
             onClick={() => setIsDemoOpen(true)}
-            className="relative group w-full bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-8 text-center hover:border-purple-500/50 transition-all cursor-pointer overflow-hidden"
+            className="relative group w-full bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 mb-8 text-center hover:border-beechwood-main/50 transition-all cursor-pointer overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 to-cyan-600/0 group-hover:from-purple-600/10 group-hover:to-cyan-600/10 transition-all" />
+            <div className="absolute inset-0 bg-gradient-to-br from-beechwood-main/0 to-beechwood-sage/0 group-hover:from-beechwood-main/10 group-hover:to-beechwood-sage/10 transition-all" />
             
             <div className="relative">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <Play className="w-12 h-12 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                <Play className="w-12 h-12 text-beechwood-sage group-hover:text-beechwood-lime transition-colors" />
                 <div className="text-left">
                   <p className="text-2xl font-black text-white">
                     Try Interactive Demo
@@ -730,7 +730,7 @@ export default function ProductPage() {
                   </p>
                 </div>
               </div>
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold shadow-lg shadow-purple-500/50 group-hover:shadow-purple-500/70 transition-all">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-beechwood-main to-beechwood-sage text-white rounded-lg font-bold shadow-lg shadow-beechwood-main/50 group-hover:shadow-beechwood-main/70 transition-all">
                 <Play className="w-5 h-5" />
                 Launch Demo
               </div>
@@ -738,15 +738,15 @@ export default function ProductPage() {
           </button>
 
           {/* Hero Screenshot */}
-          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-8 overflow-hidden">
-            <div className="relative aspect-video bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-lg overflow-hidden group cursor-pointer">
+          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 mb-8 overflow-hidden">
+            <div className="relative aspect-video bg-gradient-to-br from-beechwood-main/5 to-beechwood-sage/5 rounded-lg overflow-hidden group cursor-pointer">
               <ImageWithFallback
                 src={heroImage}
                 alt={`${product.name} Screenshot`}
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                 fallback={
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <ImageIcon className="w-24 h-24 text-purple-500/30 mb-4" />
+                    <ImageIcon className="w-24 h-24 text-beechwood-main/30 mb-4" />
                     <p className="text-gray-500 text-xl font-bold">
                       Product Screenshots Coming Soon
                     </p>
@@ -765,7 +765,7 @@ export default function ProductPage() {
               <button
                 key={index}
                 onClick={() => setSelectedImage(src)}
-                className="relative aspect-video bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-lg overflow-hidden group cursor-pointer border border-purple-500/30 hover:border-purple-500/50 transition-all"
+                className="relative aspect-video bg-gradient-to-br from-beechwood-main/5 to-beechwood-sage/5 rounded-lg overflow-hidden group cursor-pointer border border-beechwood-main/30 hover:border-beechwood-main/50 transition-all"
               >
                 <ImageWithFallback
                   src={src}
@@ -773,7 +773,7 @@ export default function ProductPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   fallback={
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <ImageIcon className="w-12 h-12 text-purple-500/30 mb-2" />
+                      <ImageIcon className="w-12 h-12 text-beechwood-main/30 mb-2" />
                       <p className="text-gray-600 text-xs text-center px-2">
                         screenshot-{index + 1}.png
                       </p>
@@ -790,7 +790,7 @@ export default function ProductPage() {
       <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-black text-white mb-6">
-            Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Deploy?</span>
+            Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">Deploy?</span>
           </h2>
           <p className="text-xl text-gray-400 mb-8">
             {product.status === 'Available' 
@@ -800,7 +800,7 @@ export default function ProductPage() {
           {product.cta.primary && (
             <a
               href={product.cta.primary.link}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-beechwood-main to-beechwood-sage text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-beechwood-main/50"
             >
               {product.cta.primary.text}
               <ExternalLink className="w-5 h-5" />
@@ -810,7 +810,7 @@ export default function ProductPage() {
       </div>
 
       {/* Footer */}
-      <footer className="relative border-t border-purple-500/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
+      <footer className="relative border-t border-beechwood-main/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-600 text-sm">
             © {new Date().getFullYear()} Beechwood. Revolutionizing Technology.

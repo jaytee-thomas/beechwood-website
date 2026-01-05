@@ -109,9 +109,9 @@ export default function BlogAdmin() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#0a0a1f] flex items-center justify-center px-4">
-        <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 max-w-md w-full">
+        <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 max-w-md w-full">
           <h1 className="text-3xl font-black text-white mb-6 text-center">
-            Blog <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Admin</span>
+            Blog <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">Admin</span>
           </h1>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
@@ -120,13 +120,13 @@ export default function BlogAdmin() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-white/5 border border-purple-500/30 rounded-lg text-white focus:outline-none focus:border-purple-500"
+                className="w-full px-4 py-3 bg-white/5 border border-beechwood-main/30 rounded-lg text-white focus:outline-none focus:border-beechwood-main"
                 placeholder="Enter admin password"
               />
             </div>
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105"
+              className="w-full px-6 py-3 bg-gradient-to-r from-beechwood-600 to-beechwood-sage-600 text-white rounded-lg font-bold transition-all transform hover:scale-105"
             >
               Login
             </button>
@@ -144,20 +144,20 @@ export default function BlogAdmin() {
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-beechwood-main/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-beechwood-sage/20 rounded-full blur-[100px] animate-pulse" />
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-purple-500/20 z-50">
+      <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-beechwood-main/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors">
+          <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-beechwood-sage transition-colors">
             <ArrowLeft className="w-5 h-5" />
             <span className="font-bold">Back to Home</span>
           </Link>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-lg text-purple-400 hover:bg-purple-500/20 transition-all"
+            className="flex items-center gap-2 px-4 py-2 bg-beechwood-500/10 border border-beechwood-main/30 rounded-lg text-beechwood-sage hover:bg-beechwood-500/20 transition-all"
           >
             <Save className="w-4 h-4" />
             Export to Code
@@ -171,7 +171,7 @@ export default function BlogAdmin() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-black text-white mb-4">
-              Blog <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Management</span>
+              Blog <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">Management</span>
             </h1>
             <p className="text-gray-400 text-lg">
               Add and manage development updates for your products
@@ -183,7 +183,7 @@ export default function BlogAdmin() {
             <div className="text-center mb-12">
               <button
                 onClick={() => setShowForm(true)}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-beechwood-600 to-beechwood-sage-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-beechwood-main/50"
               >
                 <Plus className="w-5 h-5" />
                 Add New Entry
@@ -193,7 +193,7 @@ export default function BlogAdmin() {
 
           {/* Add Entry Form */}
           {showForm && (
-            <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-12">
+            <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 mb-12">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-black text-white">New Blog Entry</h2>
                 <button
@@ -211,7 +211,7 @@ export default function BlogAdmin() {
                   <select
                     value={selectedProduct}
                     onChange={(e) => setSelectedProduct(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-purple-500/30 rounded-lg text-white focus:outline-none focus:border-purple-500"
+                    className="w-full px-4 py-3 bg-white/5 border border-beechwood-main/30 rounded-lg text-white focus:outline-none focus:border-beechwood-main"
                   >
                     {products.map((product) => (
                       <option key={product.slug} value={product.slug} className="bg-[#0a0a1f]">
@@ -232,7 +232,7 @@ export default function BlogAdmin() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value.slice(0, 100))}
                     placeholder="Enter blog entry title..."
-                    className="w-full px-4 py-3 bg-white/5 border border-purple-500/30 rounded-lg text-white focus:outline-none focus:border-purple-500"
+                    className="w-full px-4 py-3 bg-white/5 border border-beechwood-main/30 rounded-lg text-white focus:outline-none focus:border-beechwood-main"
                     maxLength={100}
                   />
                 </div>
@@ -248,7 +248,7 @@ export default function BlogAdmin() {
                     onChange={(e) => setContent(e.target.value.slice(0, 500))}
                     placeholder="Describe what you accomplished, what's working, and what's next..."
                     rows={6}
-                    className="w-full px-4 py-3 bg-white/5 border border-purple-500/30 rounded-lg text-white focus:outline-none focus:border-purple-500 resize-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-beechwood-main/30 rounded-lg text-white focus:outline-none focus:border-beechwood-main resize-none"
                     maxLength={500}
                   />
                 </div>
@@ -264,7 +264,7 @@ export default function BlogAdmin() {
                 {/* Add Button */}
                 <button
                   onClick={handleAddEntry}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105"
+                  className="w-full px-6 py-4 bg-gradient-to-r from-beechwood-600 to-beechwood-sage-600 text-white rounded-lg font-bold transition-all transform hover:scale-105"
                 >
                   Add Entry
                 </button>
@@ -281,7 +281,7 @@ export default function BlogAdmin() {
               return (
                 <div key={product.slug}>
                   <h2 className="text-2xl font-black text-white mb-4 flex items-center gap-2">
-                    <Hash className="w-6 h-6 text-purple-400" />
+                    <Hash className="w-6 h-6 text-beechwood-sage" />
                     {product.name}
                     <span className="text-gray-500 text-sm font-normal">
                       ({entries.length} {entries.length === 1 ? 'entry' : 'entries'})
@@ -292,7 +292,7 @@ export default function BlogAdmin() {
                     {entries.map((entry, index) => (
                       <div
                         key={index}
-                        className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-xl p-6 hover:border-purple-500/50 transition-all"
+                        className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-xl p-6 hover:border-beechwood-main/50 transition-all"
                       >
                         <div className="flex items-start justify-between gap-4 mb-3">
                           <h3 className="text-lg font-bold text-white flex-1">
@@ -335,7 +335,7 @@ export default function BlogAdmin() {
       </div>
 
       {/* Footer */}
-      <footer className="relative border-t border-purple-500/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
+      <footer className="relative border-t border-beechwood-main/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-600 text-sm">
             Blog entries are stored in browser localStorage. Use "Export to Code" to save permanently.

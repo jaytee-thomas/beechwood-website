@@ -39,7 +39,7 @@ const product = {
   tagline: 'AI-Powered People Counting',
   description: 'Advanced computer vision solution for accurate foot traffic analysis. Perfect for retail, events, and facility management.',
   category: 'Business',
-  color: 'purple',
+  color: 'beechwood',
   completion: 75,
   languages: [
     { name: 'Python', percentage: 60 },
@@ -74,7 +74,7 @@ const product = {
   }
 };
 
-const colorClass = 'from-purple-500/20 to-purple-600/20 border-purple-500/30 text-purple-400';
+const colorClass = 'from-beechwood-500/20 to-beechwood-600/20 border-beechwood-main/30 text-beechwood-sage';
 
 // Circular Progress Component
 function CircularProgress({ percentage }: { percentage: number }) {
@@ -92,7 +92,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
           stroke="currentColor"
           strokeWidth="12"
           fill="none"
-          className="text-purple-500/20"
+          className="text-beechwood-main/20"
         />
         <circle
           cx="80"
@@ -103,7 +103,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
           fill="none"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          className="text-purple-400 transition-all duration-1000 ease-out"
+          className="text-beechwood-sage transition-all duration-1000 ease-out"
           strokeLinecap="round"
         />
       </svg>
@@ -248,8 +248,8 @@ export default function VisualCounterPage() {
       {/* Animated Grid Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-beechwood-main/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-beechwood-sage/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Demo Modal */}
@@ -281,9 +281,9 @@ export default function VisualCounterPage() {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-purple-500/20 z-50">
+      <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-beechwood-main/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors">
+          <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-beechwood-sage transition-colors">
             <ArrowLeft className="w-5 h-5" />
             <span className="font-bold">Back to Home</span>
           </Link>
@@ -296,9 +296,9 @@ export default function VisualCounterPage() {
       {/* Hero Section */}
       <div className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full mb-6 backdrop-blur-sm">
-            <Brain className="w-4 h-4 text-purple-400" />
-            <span className="text-sm font-bold text-purple-400 uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-beechwood-500/10 border border-beechwood-main/30 rounded-full mb-6 backdrop-blur-sm">
+            <Brain className="w-4 h-4 text-beechwood-sage" />
+            <span className="text-sm font-bold text-beechwood-sage uppercase tracking-wider">
               {product.category}
             </span>
           </div>
@@ -316,7 +316,7 @@ export default function VisualCounterPage() {
             {product.cta.primary && (
               <a
                 href={product.cta.primary.link}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg shadow-purple-500/50"
+                className="px-8 py-4 bg-gradient-to-r from-beechwood-600 to-beechwood-sage-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg shadow-beechwood-main/50"
               >
                 {product.cta.primary.text}
                 <ExternalLink className="w-5 h-5" />
@@ -325,7 +325,7 @@ export default function VisualCounterPage() {
             {product.cta.secondary && (
               <a
                 href={product.cta.secondary.link}
-                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-lg font-bold transition-all border-2 border-purple-500/50 hover:border-purple-500"
+                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-lg font-bold transition-all border-2 border-beechwood-main/50 hover:border-beechwood-main"
               >
                 {product.cta.secondary.text}
               </a>
@@ -335,10 +335,10 @@ export default function VisualCounterPage() {
       </div>
 
       {/* Development Progress Section */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-beechwood-900/10 z-10">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-            Development <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Progress</span>
+            Development <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">Progress</span>
           </h2>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -349,9 +349,9 @@ export default function VisualCounterPage() {
               </p>
             </div>
 
-            <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8">
+            <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8">
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <Github className="w-5 h-5 text-purple-400" />
+                <Github className="w-5 h-5 text-beechwood-sage" />
                 Tech Stack Distribution
               </h3>
               <LanguageBar languages={product.languages} />
@@ -368,17 +368,17 @@ export default function VisualCounterPage() {
         <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Updates</span>
+              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">Updates</span>
             </h2>
             
             <div className="space-y-6 mb-8">
               {latestUpdates.map((entry, index) => (
                 <div
                   key={index}
-                  className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-purple-500/50 transition-all"
+                  className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-beechwood-main/50 transition-all"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <Calendar className="w-5 h-5 text-purple-400 flex-shrink-0 mt-1" />
+                    <Calendar className="w-5 h-5 text-beechwood-sage flex-shrink-0 mt-1" />
                     <div className="flex-1">
                       <div className="flex items-start justify-between gap-4 mb-2">
                         <h3 className="text-xl font-bold text-white">
@@ -401,7 +401,7 @@ export default function VisualCounterPage() {
               <div className="text-center">
                 <Link
                   href="/products/visual-counter/blog"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-beechwood-600 to-beechwood-sage-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-beechwood-main/50"
                 >
                   View All Updates ({allBlogEntries.length})
                   <ArrowRight className="w-5 h-5" />
@@ -413,19 +413,19 @@ export default function VisualCounterPage() {
       )}
 
       {/* Features Section */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-beechwood-900/10 z-10">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-            Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Features</span>
+            Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">Features</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {product.features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/50 transition-all"
+                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-lg p-6 hover:border-beechwood-main/50 transition-all"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-beechwood-400 mt-2 flex-shrink-0" />
                   <p className="text-gray-300 text-lg">{feature}</p>
                 </div>
               </div>
@@ -438,13 +438,13 @@ export default function VisualCounterPage() {
       <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-black text-white mb-8 uppercase tracking-wider">
-            Built <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">With</span>
+            Built <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">With</span>
           </h2>
           <div className="flex flex-wrap gap-3 justify-center">
             {product.tech.map((tech, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full text-gray-300 text-sm font-bold backdrop-blur-sm"
+                className="px-4 py-2 bg-beechwood-500/10 border border-beechwood-main/30 rounded-full text-gray-300 text-sm font-bold backdrop-blur-sm"
               >
                 {tech}
               </span>
@@ -454,22 +454,22 @@ export default function VisualCounterPage() {
       </div>
 
       {/* VIDEO DEMO & SCREENSHOTS SECTION */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-beechwood-900/10 z-10">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
-            See It <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">In Action</span>
+            See It <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">In Action</span>
           </h2>
           
           {/* Interactive Demo Button */}
           <button
             onClick={() => setIsDemoOpen(true)}
-            className="relative group w-full bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-8 text-center hover:border-purple-500/50 transition-all cursor-pointer overflow-hidden"
+            className="relative group w-full bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 mb-8 text-center hover:border-beechwood-main/50 transition-all cursor-pointer overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 to-cyan-600/0 group-hover:from-purple-600/10 group-hover:to-cyan-600/10 transition-all" />
+            <div className="absolute inset-0 bg-gradient-to-br from-beechwood-600/0 to-beechwood-sage-600/0 group-hover:from-beechwood-600/10 group-hover:to-beechwood-sage-600/10 transition-all" />
             
             <div className="relative">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <Play className="w-12 h-12 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                <Play className="w-12 h-12 text-beechwood-sage group-hover:text-beechwood-300 transition-colors" />
                 <div className="text-left">
                   <p className="text-2xl font-black text-white">
                     Try Interactive Demo
@@ -479,7 +479,7 @@ export default function VisualCounterPage() {
                   </p>
                 </div>
               </div>
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold shadow-lg shadow-purple-500/50 group-hover:shadow-purple-500/70 transition-all">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-beechwood-600 to-beechwood-sage-600 text-white rounded-lg font-bold shadow-lg shadow-beechwood-main/50 group-hover:shadow-beechwood-main/70 transition-all">
                 <Play className="w-5 h-5" />
                 Launch Demo
               </div>
@@ -487,7 +487,7 @@ export default function VisualCounterPage() {
           </button>
 
           {/* YOUTUBE VIDEO DEMO */}
-          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-8 overflow-hidden">
+          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 mb-8 overflow-hidden">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center gap-2 px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full">
                 <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
@@ -499,11 +499,11 @@ export default function VisualCounterPage() {
               {/* Video Poster/Thumbnail */}
               {!videoStarted && (
                 <div 
-                  className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 flex items-center justify-center cursor-pointer z-10 transition-opacity hover:opacity-80"
+                  className="absolute inset-0 bg-gradient-to-br from-beechwood-500/10 to-beechwood-sage-500/10 flex items-center justify-center cursor-pointer z-10 transition-opacity hover:opacity-80"
                   onClick={() => setVideoStarted(true)}
                 >
                   <div className="text-center">
-                    <div className="w-24 h-24 bg-purple-600/80 rounded-full flex items-center justify-center mb-4 mx-auto hover:bg-purple-600 transition-all transform hover:scale-110">
+                    <div className="w-24 h-24 bg-beechwood-main/80 rounded-full flex items-center justify-center mb-4 mx-auto hover:bg-beechwood-main transition-all transform hover:scale-110">
                       <Play className="w-12 h-12 text-white ml-1" />
                     </div>
                     <p className="text-white font-bold text-lg">Click to Play Video</p>
@@ -532,7 +532,7 @@ export default function VisualCounterPage() {
                     iframe.src = "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1&autoplay=1&t=0";
                   }
                 }}
-                className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 rounded-full text-sm text-purple-400 font-bold transition-all transform hover:scale-105"
+                className="px-4 py-2 bg-beechwood-500/20 hover:bg-beechwood-500/30 border border-beechwood-main/30 rounded-full text-sm text-beechwood-sage font-bold transition-all transform hover:scale-105"
               >
                 0:00 Introduction
               </button>
@@ -544,7 +544,7 @@ export default function VisualCounterPage() {
                     iframe.src = "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1&autoplay=1&t=15";
                   }
                 }}
-                className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 rounded-full text-sm text-purple-400 font-bold transition-all transform hover:scale-105"
+                className="px-4 py-2 bg-beechwood-500/20 hover:bg-beechwood-500/30 border border-beechwood-main/30 rounded-full text-sm text-beechwood-sage font-bold transition-all transform hover:scale-105"
               >
                 0:15 Live Counting
               </button>
@@ -556,7 +556,7 @@ export default function VisualCounterPage() {
                     iframe.src = "https://www.youtube.com/embed/o_kIKdGSfVI?rel=0&modestbranding=1&autoplay=1&t=30";
                   }
                 }}
-                className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 rounded-full text-sm text-purple-400 font-bold transition-all transform hover:scale-105"
+                className="px-4 py-2 bg-beechwood-500/20 hover:bg-beechwood-500/30 border border-beechwood-main/30 rounded-full text-sm text-beechwood-sage font-bold transition-all transform hover:scale-105"
               >
                 0:30 Results
               </button>
@@ -571,7 +571,7 @@ export default function VisualCounterPage() {
                 href="https://youtube.com/shorts/o_kIKdGSfVI?si=DN9cF1WAgEp1s833" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 flex items-center gap-2 font-bold transition-colors"
+                className="text-beechwood-sage hover:text-beechwood-300 flex items-center gap-2 font-bold transition-colors"
               >
                 Watch on YouTube <ExternalLink className="w-4 h-4" />
               </a>
@@ -579,19 +579,19 @@ export default function VisualCounterPage() {
           </div>
 
           {/* Hero Screenshot */}
-          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-8 overflow-hidden">
+          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 mb-8 overflow-hidden">
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <ImageIcon className="w-6 h-6 text-purple-400" />
+              <ImageIcon className="w-6 h-6 text-beechwood-sage" />
               Product Screenshots
             </h3>
-            <div className="relative aspect-video bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-lg overflow-hidden group cursor-pointer">
+            <div className="relative aspect-video bg-gradient-to-br from-beechwood-500/5 to-beechwood-sage-500/5 rounded-lg overflow-hidden group cursor-pointer">
               <ImageWithFallback
                 src={heroImage}
                 alt={`${product.name} Screenshot`}
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                 fallback={
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <ImageIcon className="w-24 h-24 text-purple-500/30 mb-4" />
+                    <ImageIcon className="w-24 h-24 text-beechwood-500/30 mb-4" />
                     <p className="text-gray-500 text-xl font-bold">
                       Product Screenshots Coming Soon
                     </p>
@@ -610,7 +610,7 @@ export default function VisualCounterPage() {
               <button
                 key={index}
                 onClick={() => setSelectedImage(src)}
-                className="relative aspect-video bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-lg overflow-hidden group cursor-pointer border border-purple-500/30 hover:border-purple-500/50 transition-all"
+                className="relative aspect-video bg-gradient-to-br from-beechwood-500/5 to-beechwood-sage-500/5 rounded-lg overflow-hidden group cursor-pointer border border-beechwood-main/30 hover:border-beechwood-main/50 transition-all"
               >
                 <ImageWithFallback
                   src={src}
@@ -618,7 +618,7 @@ export default function VisualCounterPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   fallback={
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <ImageIcon className="w-12 h-12 text-purple-500/30 mb-2" />
+                      <ImageIcon className="w-12 h-12 text-beechwood-500/30 mb-2" />
                       <p className="text-gray-600 text-xs text-center px-2">
                         screenshot-{index + 1}.png
                       </p>
@@ -635,7 +635,7 @@ export default function VisualCounterPage() {
       <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-black text-white mb-6">
-            Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Deploy?</span>
+            Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-400 to-beechwood-sage-400">Deploy?</span>
           </h2>
           <p className="text-xl text-gray-400 mb-8">
             Start using {product.name} today.
@@ -643,7 +643,7 @@ export default function VisualCounterPage() {
           {product.cta.primary && (
             <a
               href={product.cta.primary.link}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-beechwood-600 to-beechwood-sage-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-beechwood-main/50"
             >
               {product.cta.primary.text}
               <ExternalLink className="w-5 h-5" />
@@ -653,7 +653,7 @@ export default function VisualCounterPage() {
       </div>
 
       {/* Footer */}
-      <footer className="relative border-t border-purple-500/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
+      <footer className="relative border-t border-beechwood-main/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-600 text-sm">
             © {new Date().getFullYear()} Beechwood. Revolutionizing Technology.
