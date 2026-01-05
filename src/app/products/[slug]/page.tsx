@@ -1,9 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Calendar, ArrowRight, Brain } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Calendar, ArrowRight, Brain, Play, ImageIcon, X } from 'lucide-react';
 import { notFound, useParams } from 'next/navigation';
+import DemoModal from '@/components/DemoModal';
+import BeaconDemo from '@/components/demos/BeaconDemo';
+import I65SportsDemo from '@/components/demos/I65SportsDemo';
+import Where2GoNashvilleDemo from '@/components/demos/Where2GoNashvilleDemo';
+import VisualCounterDemo from '@/components/demos/VisualCounterDemo';
+import ClockWorkDemo from '@/components/demos/ClockWorkDemo';
+import BeechwoodOSDemo from '@/components/demos/BeechwoodOSDemo';
 
 // Language colors (GitHub-style)
 const languageColors: { [key: string]: string } = {
@@ -28,6 +36,16 @@ type BlogEntry = {
   date: string;
   title: string;
   content: string;
+};
+
+// Demo components mapping
+const demoComponents = {
+  'beacon': BeaconDemo,
+  'i65sports': I65SportsDemo,
+  'where2gonashville': Where2GoNashvilleDemo,
+  'visual-counter': VisualCounterDemo,
+  'clock-work': ClockWorkDemo,
+  'beechwood-os': BeechwoodOSDemo,
 };
 
 // Product data with completion %, languages, and DEFAULT blog entries
@@ -374,12 +392,52 @@ function formatDate(dateString: string) {
   });
 }
 
+// Image with fallback component
+function ImageWithFallback({ 
+  src, 
+  alt, 
+  className,
+  fallback 
+}: { 
+  src: string; 
+  alt: string; 
+  className?: string;
+  fallback: React.ReactNode;
+}) {
+  const [imageError, setImageError] = useState(false);
+  
+  if (imageError) {
+    return <>{fallback}</>;
+  }
+  
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className={className}
+      onError={() => setImageError(true)}
+    />
+  );
+}
+
 export default function ProductPage() {
   const params = useParams();
   const slug = params.slug as string;
   const [allBlogEntries, setAllBlogEntries] = useState<BlogEntry[]>([]);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const product = products[slug as keyof typeof products];
+  const DemoComponent = demoComponents[slug as keyof typeof demoComponents];
+  
+  // Image paths
+  const heroImage = `/products/${slug}/hero.png`;
+  const screenshots = [
+    `/products/${slug}/screenshot-1.png`,
+    `/products/${slug}/screenshot-2.png`,
+    `/products/${slug}/screenshot-3.png`,
+  ];
 
   // Load blog entries from localStorage and merge with defaults
   useEffect(() => {
@@ -419,16 +477,12 @@ export default function ProductPage() {
       // Also listen for custom event from same window
       window.addEventListener('blogUpdated', handleStorageChange);
 
-      // Poll for changes (since same-window localStorage changes don't trigger storage event)
-      const interval = setInterval(loadBlogEntries, 1000);
-
       return () => {
         window.removeEventListener('storage', handleStorageChange);
         window.removeEventListener('blogUpdated', handleStorageChange);
-        clearInterval(interval);
       };
     }
-  }, [slug, product]);
+  }, [slug, product?.defaultBlog]);
 
   if (!product) {
     notFound();
@@ -446,6 +500,34 @@ export default function ProductPage() {
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
+      {/* Demo Modal */}
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} title={product.name}>
+        {DemoComponent && <DemoComponent />}
+      </DemoModal>
+
+      {/* Image Lightbox */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
+            <Image
+              src={selectedImage}
+              alt="Screenshot"
+              fill
+              className="object-contain"
+            />
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-[#0a0a1f]/80 backdrop-blur-xl border-b border-purple-500/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -453,7 +535,7 @@ export default function ProductPage() {
             <ArrowLeft className="w-5 h-5" />
             <span className="font-bold">Back to Home</span>
           </Link>
-          <span className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r ${colorClass} border backdrop-blur-sm`}>
+          <span className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider ${colorClass} border backdrop-blur-sm`}>
             {product.status}
           </span>
         </div>
@@ -622,15 +704,84 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Screenshot Placeholder */}
+      {/* SCREENSHOTS & DEMO SECTION - COMBINED */}
       <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-12 text-center">
-            <div className="aspect-video bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-lg flex items-center justify-center">
-              <p className="text-gray-500 text-xl font-bold">
-                Product Screenshots Coming Soon
-              </p>
+          <h2 className="text-4xl font-black text-white mb-12 text-center uppercase tracking-wider">
+            See It <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">In Action</span>
+          </h2>
+          
+          {/* Interactive Demo Button */}
+          <button
+            onClick={() => setIsDemoOpen(true)}
+            className="relative group w-full bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-8 text-center hover:border-purple-500/50 transition-all cursor-pointer overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 to-cyan-600/0 group-hover:from-purple-600/10 group-hover:to-cyan-600/10 transition-all" />
+            
+            <div className="relative">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Play className="w-12 h-12 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                <div className="text-left">
+                  <p className="text-2xl font-black text-white">
+                    Try Interactive Demo
+                  </p>
+                  <p className="text-gray-400">
+                    Experience {product.name} in action
+                  </p>
+                </div>
+              </div>
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-lg font-bold shadow-lg shadow-purple-500/50 group-hover:shadow-purple-500/70 transition-all">
+                <Play className="w-5 h-5" />
+                Launch Demo
+              </div>
             </div>
+          </button>
+
+          {/* Hero Screenshot */}
+          <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 mb-8 overflow-hidden">
+            <div className="relative aspect-video bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-lg overflow-hidden group cursor-pointer">
+              <ImageWithFallback
+                src={heroImage}
+                alt={`${product.name} Screenshot`}
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                fallback={
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <ImageIcon className="w-24 h-24 text-purple-500/30 mb-4" />
+                    <p className="text-gray-500 text-xl font-bold">
+                      Product Screenshots Coming Soon
+                    </p>
+                    <p className="text-gray-600 text-sm mt-2">
+                      Add hero.png to /public/products/{slug}/
+                    </p>
+                  </div>
+                }
+              />
+            </div>
+          </div>
+
+          {/* Additional Screenshots Grid */}
+          <div className="grid md:grid-cols-3 gap-4">
+            {screenshots.map((src, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImage(src)}
+                className="relative aspect-video bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-lg overflow-hidden group cursor-pointer border border-purple-500/30 hover:border-purple-500/50 transition-all"
+              >
+                <ImageWithFallback
+                  src={src}
+                  alt={`${product.name} Screenshot ${index + 1}`}
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  fallback={
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <ImageIcon className="w-12 h-12 text-purple-500/30 mb-2" />
+                      <p className="text-gray-600 text-xs text-center px-2">
+                        screenshot-{index + 1}.png
+                      </p>
+                    </div>
+                  }
+                />
+              </button>
+            ))}
           </div>
         </div>
       </div>

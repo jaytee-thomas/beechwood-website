@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
@@ -17,6 +18,11 @@ import {
   Zap,
   Brain,
   Sparkles,
+  TrendingUp,
+  Award,
+  Star,
+  CheckCircle,
+  Rocket,
   Lock
 } from 'lucide-react';
 
@@ -187,8 +193,52 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Stats Section - NEW */}
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="text-center mb-16"
+          >
+            <motion.h2 variants={itemVariants} className="text-5xl font-black text-white mb-4">
+              IMPACT BY THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">NUMBERS</span>
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-xl text-gray-400">
+              Real results from revolutionary technology
+            </motion.p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: TrendingUp, value: "95%", label: "AI Accuracy", description: "Industry-leading precision" },
+              { icon: Rocket, value: "50+", label: "Active Clients", description: "Growing every day" },
+              { icon: Award, value: "∞", label: "Innovation", description: "Constantly evolving" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 text-center hover:border-purple-500/50 transition-all"
+              >
+                <stat.icon className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-xl font-bold text-white mb-2">{stat.label}</div>
+                <div className="text-gray-400">{stat.description}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Products Section */}
-      <div id="products" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+      <div id="products" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
@@ -247,7 +297,7 @@ export default function Home() {
                   </motion.div>
                 </Link>
 
-                {/* Where2GoNashville */}
+                {/* Where2Go */}
                 <Link href="/products/where2gonashville">
                   <motion.div 
                     whileHover={{ scale: 1.05, y: -5 }}
@@ -255,7 +305,7 @@ export default function Home() {
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/0 to-yellow-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <MapPin className="w-12 h-12 text-yellow-400 mb-4 relative z-10" />
-                    <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Where2GoNashville</h4>
+                    <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Where2Go</h4>
                     <p className="text-gray-400 mb-4 relative z-10">Real-time event discovery. Never miss the action.</p>
                     <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                       <span className="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm border border-yellow-400/30">Events</span>
@@ -341,8 +391,115 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Testimonials Section - NEW */}
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="text-center mb-16"
+          >
+            <motion.h2 variants={itemVariants} className="text-5xl font-black text-white mb-4">
+              TRUSTED BY <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">INNOVATORS</span>
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-xl text-gray-400">
+              What our partners say about the revolution
+            </motion.p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah Chen",
+                role: "CTO, TechVentures",
+                content: "Beechwood OS transformed our operations. The AI agents handle tasks we didn't think were possible to automate. Game-changer.",
+                rating: 5
+              },
+              {
+                name: "Marcus Rodriguez",
+                role: "Founder, RetailPro",
+                content: "Visual Counter gave us insights we never had before. Foot traffic analytics helped us optimize staffing and increase revenue by 23%.",
+                rating: 5
+              },
+              {
+                name: "Alex Thompson",
+                role: "Operations Manager",
+                content: "Clock Work cut our scheduling time by 70%. The AI optimization is incredibly accurate and our team loves the mobile app.",
+                rating: 5
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 hover:border-purple-500/50 transition-all"
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-6 leading-relaxed italic">
+                  "{testimonial.content}"
+                </p>
+                <div>
+                  <div className="font-bold text-white">{testimonial.name}</div>
+                  <div className="text-gray-500 text-sm">{testimonial.role}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Why Choose Us - NEW */}
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="text-center mb-16"
+          >
+            <motion.h2 variants={itemVariants} className="text-5xl font-black text-white mb-4">
+              WHY <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">BEECHWOOD</span>
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-xl text-gray-400">
+              Built different. Engineered better.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Brain, title: "AI-First", description: "Every product powered by cutting-edge AI" },
+              { icon: Zap, title: "Lightning Fast", description: "Optimized for speed and performance" },
+              { icon: Shield, title: "Enterprise Security", description: "Bank-level encryption and protection" },
+              { icon: CheckCircle, title: "Proven Results", description: "Real metrics, real impact" }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 text-center hover:border-purple-500/50 transition-all"
+              >
+                <feature.icon className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* About Section */}
-      <div id="about" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
+      <div id="about" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/10 z-10">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -369,7 +526,7 @@ export default function Home() {
       </div>
 
       {/* Contact Section */}
-      <div id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-purple-900/20 z-10">
+      <div id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial="hidden"
@@ -399,7 +556,7 @@ export default function Home() {
       <footer className="relative border-t border-purple-500/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Brain className="w-7 h-7 text-purple-400" />
+            <Brain className="w-8 h-8 text-purple-400" />
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent font-bold">beechwood.ai</span>
           </div>
           <p className="text-gray-500 text-sm">

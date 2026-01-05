@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beechwood Screenshot Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a1f;
+            color: white;
+        }
+        
+        .controls {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            background: #1a1a3a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #8B5CF6;
+        }
+        
+        select, button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid #8B5CF6;
+            background: #0a0a1f;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        .screenshot {
+            width: 1920px;
+            height: 1080px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Beacon - Emergency Red */
+        .beacon {
+            background: linear-gradient(135deg, #1a0a0f 0%, #2d1215 50%, #1a0a0f 100%);
+        }
+        
+        .beacon .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .beacon .emergency-button {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #DC2626, #991B1B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 0 100px rgba(220, 38, 38, 0.5);
+            margin: 0 auto 40px;
+        }
+        
+        /* i65sports - Cyan Social */
+        .i65sports {
+            background: linear-gradient(135deg, #0a1520 0%, #0f2942 50%, #0a1520 100%);
+        }
+        
+        .feed-post {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        
+        /* Where2Go - Yellow Events */
+        .where2go {
+            background: linear-gradient(135deg, #1a1510 0%, #2d2415 50%, #1a1510 100%);
+        }
+        
+        .event-card {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 12px;
+            display: inline-block;
+            width: 280px;
+        }
+        
+        /* Visual Counter - Purple AI */
+        .visual-counter {
+            background: linear-gradient(135deg, #150a1f 0%, #2a1542 50%, #150a1f 100%);
+        }
+        
+        .counter-display {
+            font-size: 180px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin: 80px 0;
+        }
+        
+        /* Clock Work - Orange Scheduling */
+        .clock-work {
+            background: linear-gradient(135deg, #1f150a 0%, #422a15 50%, #1f150a 100%);
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .schedule-cell {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        /* Beechwood OS - Blue AI Agents */
+        .beechwood-os {
+            background: linear-gradient(135deg, #0a0f1f 0%, #15244a 50%, #0a0f1f 100%);
+        }
+        
+        .chat-message {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 12px auto;
+            max-width: 600px;
+        }
+        
+        /* Shared Styles */
+        h1 {
+            font-size: 96px;
+            font-weight: 900;
+            margin: 0 0 24px;
+            line-height: 1;
+        }
+        
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 0 0 16px;
+        }
+        
+        p {
+            font-size: 24px;
+            opacity: 0.8;
+            margin: 0;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <h2>🎨 Beechwood Screenshot Generator</h2>
+        <p style="margin-bottom: 20px;">Select a product, then right-click the screenshot below and "Save Image As..."</p>
+        
+        <select id="productSelect">
+            <option value="beacon">Beacon - Emergency Response</option>
+            <option value="i65sports">i65sports - Social Platform</option>
+            <option value="where2go">Where2GoNashville - Events</option>
+            <option value="visual-counter">Visual Counter - AI Analytics</option>
+            <option value="clock-work">Clock Work - Scheduling</option>
+            <option value="beechwood-os">Beechwood OS - AI Agents</option>
+        </select>
+        
+        <button onclick="downloadScreenshot()">📥 Download Screenshot</button>
+        <button onclick="downloadAll()">📦 Generate All (Instructions)</button>
+    </div>
+
+    <div id="screenshotContainer"></div>
+
+    <script>
+        const products = {
+            beacon: {
+                name: 'Beacon',
+                tagline: 'Emergency Response Platform',
+                color1: '#DC2626',
+                color2: '#991B1B',
+                html: `
+                    <div class="screenshot beacon">
+                        <div class="grid-bg"></div>
+                        <div class="glow-orb" style="top: 100px; left: 100px; width: 400px; height: 400px; background: #DC2626;"></div>
+                        <div class="glow-orb" style="bottom: 100px; right: 100px; width: 400px; height: 400px; background: #991B1B;"></div>
+                        <div class="content">
+                            <div class="emergency-button">SOS</div>
+                            <h1>BEACON</h1>
+                            <h2 class="gradient-text">Emergency Response Platform</h2>
+                            <p>One-tap emergency alerts • Real-time location sharing • 24/7 Protection</p>
+                        </div>
+                    </div>
+                `
+            },
+            i65sports: {
+                name: 'i65sports',
+                tagline: 'Social Sports Platform',
+                color1: '#06B6D4',
+                color2: '#0891B2',
+                html: `
+                    <div class="screenshot i65sports">
+                        <div class="grid-bg"></div>
+                        <div class="glow-orb" style="top: 100px; left: 100px; width: 400px; height: 400px; background: #06B6D4;"></div>
+                        <div class="glow-orb" style="bottom: 100px; right: 100px; width: 400px; height: 400px; background: #0891B2;"></div>
+                        <div style="padding: 120px; padding-top: 200px;">
+                            <h1>i65sports</h1>
+                            <h2 class="gradient-text">Connect Through Sports</h2>
+                            <div style="margin-top: 60px;">
+                                <div class="feed-post">
+                                    <div style="font-size: 32px; margin-bottom: 12px;">🏈 @TitansFan615</div>
+                                    <p style="font-size: 28px;">What a game! Defense was ON FIRE! 🔥</p>
+                                    <div style="margin-top: 20px; opacity: 0.6;">234 likes • 45 comments</div>
+                                </div>
+                                <div class="feed-post">
+                                    <div style="font-size: 32px; margin-bottom: 12px;">🏒 @PredsNation</div>
+                                    <p style="font-size: 28px;">Saros with another shutout! Best goalie in the league!</p>
+                                    <div style="margin-top: 20px; opacity: 0.6;">189 likes • 32 comments</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'where2go': {
+                name: 'Where2GoNashville',
+                tagline: 'Discover Nashville Events',
+                color1: '#FBBF24',
+                color2: '#F59E0B',
+                html: `
+                    <div class="screenshot where2go">
+                        <div class="grid-bg"></div>
+                        <div class="glow-orb" style="top: 100px; left: 100px; width: 400px; height: 400px; background: #FBBF24;"></div>
+                        <div class="glow-orb" style="bottom: 100px; right: 100px; width: 400px; height: 400px; background: #F59E0B;"></div>
+                        <div style="padding: 120px; text-align: center;">
+                            <h1>Where2GoNashville</h1>
+                            <h2 class="gradient-text">Tonight in Nashville</h2>
+                            <div style="margin-top: 60px; text-align: left; display: flex; flex-wrap: wrap; justify-content: center;">
+                                <div class="event-card">
+                                    <div style="font-size: 48px; margin-bottom: 12px;">🎸</div>
+                                    <h3 style="font-size: 28px; margin: 0 0 8px;">Live Music</h3>
+                                    <p style="font-size: 20px;">The Bluebird Cafe</p>
+                                    <p style="font-size: 18px; opacity: 0.6;">Tonight 8:00 PM</p>
+                                </div>
+                                <div class="event-card">
+                                    <div style="font-size: 48px; margin-bottom: 12px;">🍔</div>
+                                    <h3 style="font-size: 28px; margin: 0 0 8px;">Food Festival</h3>
+                                    <p style="font-size: 20px;">Centennial Park</p>
+                                    <p style="font-size: 18px; opacity: 0.6;">Today 5:00 PM</p>
+                                </div>
+                                <div class="event-card">
+                                    <div style="font-size: 48px; margin-bottom: 12px;">🎵</div>
+                                    <h3 style="font-size: 28px; margin: 0 0 8px;">Honky Tonk</h3>
+                                    <p style="font-size: 20px;">Tootsies</p>
+                                    <p style="font-size: 18px; opacity: 0.6;">Tonight 9:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'visual-counter': {
+                name: 'Visual Counter',
+                tagline: 'AI-Powered Analytics',
+                color1: '#8B5CF6',
+                color2: '#7C3AED',
+                html: `
+                    <div class="screenshot visual-counter">
+                        <div class="grid-bg"></div>
+                        <div class="glow-orb" style="top: 100px; left: 100px; width: 400px; height: 400px; background: #8B5CF6;"></div>
+                        <div class="glow-orb" style="bottom: 100px; right: 100px; width: 400px; height: 400px; background: #7C3AED;"></div>
+                        <div style="padding: 120px; text-align: center;">
+                            <h1>Visual Counter</h1>
+                            <h2 class="gradient-text">AI-Powered People Counting</h2>
+                            <div class="counter-display">47</div>
+                            <p style="font-size: 32px;">People Currently in Store</p>
+                            <div style="display: flex; gap: 40px; justify-content: center; margin-top: 80px;">
+                                <div>
+                                    <div style="font-size: 48px; font-weight: 900; color: #06B6D4;">1,247</div>
+                                    <p style="font-size: 20px;">Today's Total</p>
+                                </div>
+                                <div>
+                                    <div style="font-size: 48px; font-weight: 900; color: #10B981;">+23%</div>
+                                    <p style="font-size: 20px;">vs Yesterday</p>
+                                </div>
+                                <div>
+                                    <div style="font-size: 48px; font-weight: 900; color: #8B5CF6;">95.3%</div>
+                                    <p style="font-size: 20px;">Accuracy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'clock-work': {
+                name: 'Clock Work',
+                tagline: 'Smart Scheduling',
+                color1: '#F97316',
+                color2: '#EA580C',
+                html: `
+                    <div class="screenshot clock-work">
+                        <div class="grid-bg"></div>
+                        <div class="glow-orb" style="top: 100px; left: 100px; width: 400px; height: 400px; background: #F97316;"></div>
+                        <div class="glow-orb" style="bottom: 100px; right: 100px; width: 400px; height: 400px; background: #EA580C;"></div>
+                        <div style="padding: 120px; text-align: center;">
+                            <h1>Clock Work</h1>
+                            <h2 class="gradient-text">AI-Optimized Scheduling</h2>
+                            <div style="margin-top: 60px;">
+                                <div class="schedule-grid">
+                                    <div class="schedule-cell"><div style="font-weight: 700; margin-bottom: 8px;">MON</div><div>Alice</div></div>
+                                    <div class="schedule-cell"><div style="font-weight: 700; margin-bottom: 8px;">TUE</div><div>Bob</div></div>
+                                    <div class="schedule-cell"><div style="font-weight: 700; margin-bottom: 8px;">WED</div><div>Carol</div></div>
+                                    <div class="schedule-cell"><div style="font-weight: 700; margin-bottom: 8px;">THU</div><div>Alice</div></div>
+                                    <div class="schedule-cell"><div style="font-weight: 700; margin-bottom: 8px;">FRI</div><div>Bob</div></div>
+                                </div>
+                                <div style="margin-top: 80px; display: flex; gap: 60px; justify-content: center;">
+                                    <div>
+                                        <div style="font-size: 56px; font-weight: 900; color: #10B981;">30%</div>
+                                        <p style="font-size: 24px;">Faster Scheduling</p>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 56px; font-weight: 900; color: #8B5CF6;">15%</div>
+                                        <p style="font-size: 24px;">Cost Reduction</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'beechwood-os': {
+                name: 'Beechwood OS',
+                tagline: 'AI Employees',
+                color1: '#3B82F6',
+                color2: '#2563EB',
+                html: `
+                    <div class="screenshot beechwood-os">
+                        <div class="grid-bg"></div>
+                        <div class="glow-orb" style="top: 100px; left: 100px; width: 400px; height: 400px; background: #3B82F6;"></div>
+                        <div class="glow-orb" style="bottom: 100px; right: 100px; width: 400px; height: 400px; background: #2563EB;"></div>
+                        <div style="padding: 120px;">
+                            <h1 style="text-align: center;">Beechwood OS</h1>
+                            <h2 class="gradient-text" style="text-align: center;">AI-Augmented Enterprise</h2>
+                            <div style="margin-top: 60px;">
+                                <div class="chat-message">
+                                    <div style="font-size: 20px; color: #3B82F6; margin-bottom: 12px; font-weight: 700;">💼 Sarah (Sales Agent)</div>
+                                    <p style="font-size: 24px;">I've qualified 15 new leads and scheduled 8 meetings for next week. All follow-ups are automated.</p>
+                                </div>
+                                <div class="chat-message">
+                                    <div style="font-size: 20px; color: #8B5CF6; margin-bottom: 12px; font-weight: 700;">📊 Marcus (Marketing Agent)</div>
+                                    <p style="font-size: 24px;">Campaign performance is up 34%. I've optimized ad spend and created next week's content calendar.</p>
+                                </div>
+                                <div class="chat-message">
+                                    <div style="font-size: 20px; color: #06B6D4; margin-bottom: 12px; font-weight: 700;">📈 Dana (Data Analyst)</div>
+                                    <p style="font-size: 24px;">Revenue analysis complete. Identified 3 growth opportunities worth $500K+ annually.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function showProduct(productId) {
+            const product = products[productId];
+            document.getElementById('screenshotContainer').innerHTML = product.html;
+        }
+
+        document.getElementById('productSelect').addEventListener('change', (e) => {
+            showProduct(e.target.value);
+        });
+
+        function downloadScreenshot() {
+            alert('To download:\n\n1. Right-click the screenshot below\n2. Select "Save Image As..."\n3. Name it: hero.png\n4. Save to: public/products/[product-name]/\n\nRepeat for all 6 products!');
+        }
+
+        function downloadAll() {
+            alert('To generate all screenshots:\n\n1. Select each product from dropdown\n2. Right-click → Save Image As → hero.png\n3. Save to correct folder:\n   - Beacon → public/products/beacon/hero.png\n   - i65sports → public/products/i65sports/hero.png\n   - Where2Go → public/products/where2gonashville/hero.png\n   - Visual Counter → public/products/visual-counter/hero.png\n   - Clock Work → public/products/clock-work/hero.png\n   - Beechwood OS → public/products/beechwood-os/hero.png\n\nTakes ~5 minutes total!');
+        }
+
+        // Show first product on load
+        showProduct('beacon');
+    </script>
+</body>
+</html>
+
