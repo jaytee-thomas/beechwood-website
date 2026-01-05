@@ -40,3 +40,5 @@ Replace ALL instances of purple/cyan colors with Beechwood green palette:
 - Animation timings
 - Text content
 
+
+

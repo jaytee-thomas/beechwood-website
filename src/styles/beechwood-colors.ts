@@ -47,3 +47,5 @@ export const beechwoodColors = {
 // Export for easy importing
 export default beechwoodColors;
 
+
+

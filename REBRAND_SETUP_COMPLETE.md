@@ -60,3 +60,5 @@ Everything is set up. Just:
 2. Give Cursor the rebrand prompt
 3. Watch the magic happen!
 
+
+

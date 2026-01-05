@@ -131,3 +131,5 @@ After rebrand, verify:
 
 Begin with `src/app/page.tsx` and work through each file systematically. Replace colors one section at a time, testing as you go.
 
+
+

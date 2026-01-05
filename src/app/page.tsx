@@ -140,15 +140,15 @@ export default function Home() {
 
             {/* Main Headline - BOLD & FUTURISTIC */}
             <motion.h1 variants={itemVariants} className="text-6xl sm:text-7xl md:text-8xl font-black text-white mb-6 leading-tight">
-              REVOLUTIONIZE
+              UNDER
               <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage via-beechwood-tech to-beechwood-sage animate-gradient">
-                WITH AI
+                CONSTRUCTION
               </span>
             </motion.h1>
 
             {/* Subheadline */}
             <motion.p variants={itemVariants} className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Transform your business with cutting-edge AI technology. From autonomous agents to intelligent systems—we build the future, today.
+              Pardon our mess and feel free to take a tour and check our progress. Launching Soon!
             </motion.p>
 
             {/* CTA Buttons - AGGRESSIVE STYLE */}
