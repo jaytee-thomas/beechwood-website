@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   description: 'From consumer apps to enterprise AI, we build technology that works in the real world. Discover Beacon, i65sports, Visual Counter, Clock Work, and Beechwood OS.',
   keywords: 'Beechwood, Beechwood.ai, innovation, apps, AI, enterprise software, emergency response, sports social platform, people counting, workforce scheduling',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
     apple: '/apple-touch-icon.png',
   },
 }
