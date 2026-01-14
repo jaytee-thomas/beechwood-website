@@ -140,15 +140,17 @@ export default function Home() {
 
             {/* Main Headline - BOLD & FUTURISTIC */}
             <motion.h1 variants={itemVariants} className="text-6xl sm:text-7xl md:text-8xl font-black text-white mb-6 leading-tight">
-              UNDER
+              AI-Powered Apps
               <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage via-beechwood-tech to-beechwood-sage animate-gradient">
-                CONSTRUCTION
+                That Solve Real Problems
               </span>
             </motion.h1>
 
             {/* Subheadline */}
             <motion.p variants={itemVariants} className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Pardon our mess and feel free to take a tour and check our progress. Launching Soon!
+              From people counting to sports networking, Beechwood brings practical AI to your fingertips.
+              <br />
+              <span className="text-beechwood-sage font-bold">Visual Counter now available on App Store!</span>
             </motion.p>
 
             {/* CTA Buttons - AGGRESSIVE STYLE */}
@@ -173,10 +175,10 @@ export default function Home() {
             {/* AI Stats - FUTURISTIC COUNTERS */}
             <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
               {[
-                { icon: Cpu, value: "6", label: "AI Solutions", color: "beechwood" },
-                { icon: Brain, value: "3", label: "Live Platforms", color: "sage" },
-                { icon: Zap, value: "∞", label: "Possibilities", color: "beechwood" },
-                { icon: Bot, value: "24/7", label: "AI Support", color: "sage" }
+                { icon: Cpu, value: "1", label: "Live App", color: "beechwood" },
+                { icon: Brain, value: "5", label: "In Development", color: "sage" },
+                { icon: Zap, value: "∞", label: "Innovation", color: "beechwood" },
+                { icon: MapPin, value: "Nashville", label: "Based In", color: "sage" }
               ].map((stat, index) => (
                 <div key={index} className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-br from-beechwood-main/20 to-beechwood-sage/20 rounded-xl blur-xl group-hover:blur-2xl transition-all" />
@@ -214,9 +216,9 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: TrendingUp, value: "95%", label: "AI Accuracy", description: "Industry-leading precision" },
-              { icon: Rocket, value: "50+", label: "Active Clients", description: "Growing every day" },
-              { icon: Award, value: "∞", label: "Innovation", description: "Constantly evolving" }
+              { icon: Cpu, value: "TensorFlow.js", label: "Built With", description: "Real-time AI Detection" },
+              { icon: Zap, value: "Cross-Platform", label: "iOS, Web, Watch", description: "Available everywhere" },
+              { icon: MapPin, value: "Nashville", label: "Based In", description: "Tennessee Innovation" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -265,15 +267,20 @@ export default function Home() {
                     className="relative group bg-gradient-to-br from-[#0a0a1f] to-beechwood-forest/20 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-red-500/50 transition-all cursor-pointer overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <Clock className="w-5 h-5 text-red-400" />
+                      <span className="text-red-400 font-bold text-sm uppercase tracking-wider">IN DEVELOPMENT</span>
+                    </div>
                     <Shield className="w-12 h-12 text-red-500 mb-4 relative z-10" />
                     <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Beacon</h4>
-                    <p className="text-gray-400 mb-4 relative z-10">Emergency response system. Instant safety at your command.</p>
+                    <p className="text-gray-400 mb-2 relative z-10">Emergency response system. Instant safety at your command.</p>
+                    <p className="text-red-400 font-semibold mb-4 relative z-10 text-sm">Coming 2026</p>
                     <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                       <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm border border-red-500/30">Emergency</span>
                       <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm border border-red-500/30">iOS</span>
                     </div>
                     <div className="flex items-center text-red-400 group-hover:gap-2 transition-all relative z-10">
-                      <span className="font-bold">DEPLOY →</span>
+                      <span className="font-bold">LEARN MORE →</span>
                     </div>
                   </motion.div>
                 </Link>
@@ -285,15 +292,20 @@ export default function Home() {
                     className="relative group bg-gradient-to-br from-[#0a0a1f] to-beechwood-forest/20 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-beechwood-lime/50 transition-all cursor-pointer overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-beechwood-sage/0 to-beechwood-sage/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <Rocket className="w-5 h-5 text-beechwood-lime" />
+                      <span className="text-beechwood-lime font-bold text-sm uppercase tracking-wider">LAUNCHING SOON</span>
+                    </div>
                     <Users className="w-12 h-12 text-beechwood-lime mb-4 relative z-10" />
                     <h4 className="text-2xl font-bold text-white mb-2 relative z-10">i65sports</h4>
-                    <p className="text-gray-400 mb-4 relative z-10">Social platform for sports fans. Connect and dominate.</p>
+                    <p className="text-gray-400 mb-2 relative z-10">Social platform for sports fans. Connect and dominate.</p>
+                    <p className="text-beechwood-lime font-semibold mb-4 relative z-10 text-sm">90% Complete - Q1 2026</p>
                     <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                       <span className="px-3 py-1 bg-beechwood-lime/20 text-beechwood-lime rounded-full text-sm border border-beechwood-lime/30">Social</span>
                       <span className="px-3 py-1 bg-beechwood-lime/20 text-beechwood-lime rounded-full text-sm border border-beechwood-lime/30">Sports</span>
                     </div>
                     <div className="flex items-center text-beechwood-lime group-hover:gap-2 transition-all relative z-10">
-                      <span className="font-bold">DEPLOY →</span>
+                      <span className="font-bold">JOIN WAITLIST →</span>
                     </div>
                   </motion.div>
                 </Link>
@@ -305,15 +317,20 @@ export default function Home() {
                     className="relative group bg-gradient-to-br from-[#0a0a1f] to-beechwood-forest/20 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all cursor-pointer overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/0 to-yellow-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <Clock className="w-5 h-5 text-yellow-400" />
+                      <span className="text-yellow-400 font-bold text-sm uppercase tracking-wider">IN DEVELOPMENT</span>
+                    </div>
                     <MapPin className="w-12 h-12 text-yellow-400 mb-4 relative z-10" />
                     <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Where2Go</h4>
-                    <p className="text-gray-400 mb-4 relative z-10">Real-time event discovery. Never miss the action.</p>
+                    <p className="text-gray-400 mb-2 relative z-10">Real-time event discovery. Never miss the action.</p>
+                    <p className="text-yellow-400 font-semibold mb-4 relative z-10 text-sm">Coming Spring 2026</p>
                     <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                       <span className="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm border border-yellow-400/30">Events</span>
                       <span className="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm border border-yellow-400/30">Live</span>
                     </div>
                     <div className="flex items-center text-yellow-400 group-hover:gap-2 transition-all relative z-10">
-                      <span className="font-bold">DEPLOY →</span>
+                      <span className="font-bold">LEARN MORE →</span>
                     </div>
                   </motion.div>
                 </Link>
@@ -328,18 +345,23 @@ export default function Home() {
                 <Link href="/products/visual-counter">
                   <motion.div 
                     whileHover={{ scale: 1.05, y: -5 }}
-                    className="relative group bg-gradient-to-br from-[#0a0a1f] to-beechwood-forest/20 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-beechwood-sage/50 transition-all cursor-pointer overflow-hidden"
+                    className="relative group bg-gradient-to-br from-[#0a0a1f] to-beechwood-forest/20 backdrop-blur-sm border-2 border-beechwood-sage/50 rounded-2xl p-8 hover:border-beechwood-sage transition-all cursor-pointer overflow-hidden shadow-lg shadow-beechwood-sage/20"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-beechwood-main/0 to-beechwood-main/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-beechwood-main/10 to-beechwood-main/20 opacity-100 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <CheckCircle className="w-5 h-5 text-beechwood-lime" />
+                      <span className="text-beechwood-lime font-bold text-sm uppercase tracking-wider">LIVE NOW</span>
+                    </div>
                     <Eye className="w-12 h-12 text-beechwood-sage mb-4 relative z-10" />
                     <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Visual Counter</h4>
-                    <p className="text-gray-400 mb-4 relative z-10">AI-powered analytics. See everything.</p>
+                    <p className="text-gray-400 mb-2 relative z-10">AI-powered people counting for businesses</p>
+                    <p className="text-beechwood-sage font-semibold mb-4 relative z-10 text-sm">Now available on the App Store!</p>
                     <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                       <span className="px-3 py-1 bg-beechwood-sage/20 text-beechwood-sage rounded-full text-sm border border-beechwood-sage/30">AI Vision</span>
                       <span className="px-3 py-1 bg-beechwood-sage/20 text-beechwood-sage rounded-full text-sm border border-beechwood-sage/30">Analytics</span>
                     </div>
                     <div className="flex items-center text-beechwood-sage group-hover:gap-2 transition-all relative z-10">
-                      <span className="font-bold">DEPLOY →</span>
+                      <span className="font-bold">DOWNLOAD iOS →</span>
                     </div>
                   </motion.div>
                 </Link>
@@ -351,15 +373,20 @@ export default function Home() {
                     className="relative group bg-gradient-to-br from-[#0a0a1f] to-beechwood-forest/20 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-orange-400/50 transition-all cursor-pointer overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-orange-600/0 to-orange-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <Sparkles className="w-5 h-5 text-orange-400" />
+                      <span className="text-orange-400 font-bold text-sm uppercase tracking-wider">PLANNED</span>
+                    </div>
                     <Clock className="w-12 h-12 text-orange-400 mb-4 relative z-10" />
                     <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Clock Work</h4>
-                    <p className="text-gray-400 mb-4 relative z-10">Intelligent scheduling. Maximum efficiency.</p>
+                    <p className="text-gray-400 mb-2 relative z-10">Intelligent scheduling. Maximum efficiency.</p>
+                    <p className="text-orange-400 font-semibold mb-4 relative z-10 text-sm">Future Release</p>
                     <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                       <span className="px-3 py-1 bg-orange-400/20 text-orange-400 rounded-full text-sm border border-orange-400/30">Scheduling</span>
                       <span className="px-3 py-1 bg-orange-400/20 text-orange-400 rounded-full text-sm border border-orange-400/30">SaaS</span>
                     </div>
                     <div className="flex items-center text-orange-400 group-hover:gap-2 transition-all relative z-10">
-                      <span className="font-bold">DEPLOY →</span>
+                      <span className="font-bold">STAY TUNED →</span>
                     </div>
                   </motion.div>
                 </Link>
@@ -375,15 +402,20 @@ export default function Home() {
                   className="relative group bg-gradient-to-br from-[#0a0a1f] to-beechwood-forest/20 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-blue-400/50 transition-all cursor-pointer overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-600/0 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center gap-2 mb-3 relative z-10">
+                    <Award className="w-5 h-5 text-blue-400" />
+                    <span className="text-blue-400 font-bold text-sm uppercase tracking-wider">VISION</span>
+                  </div>
                   <Bot className="w-12 h-12 text-blue-400 mb-4 relative z-10" />
                   <h4 className="text-2xl font-bold text-white mb-2 relative z-10">Beechwood OS</h4>
-                  <p className="text-gray-400 mb-4 relative z-10">AI-augmented enterprise OS. Autonomous intelligence.</p>
+                  <p className="text-gray-400 mb-2 relative z-10">AI-augmented enterprise OS. Autonomous intelligence.</p>
+                  <p className="text-blue-400 font-semibold mb-4 relative z-10 text-sm">Long-term Platform</p>
                   <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                     <span className="px-3 py-1 bg-blue-400/20 text-blue-400 rounded-full text-sm border border-blue-400/30">AI Agents</span>
                     <span className="px-3 py-1 bg-blue-400/20 text-blue-400 rounded-full text-sm border border-blue-400/30">Enterprise</span>
                   </div>
                   <div className="flex items-center text-blue-400 group-hover:gap-2 transition-all relative z-10">
-                    <span className="font-bold">DEPLOY →</span>
+                    <span className="font-bold">READ VISION →</span>
                   </div>
                 </motion.div>
               </Link>
@@ -392,70 +424,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Testimonials Section - NEW */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-beechwood-forest/10 z-10">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
-            <motion.h2 variants={itemVariants} className="text-5xl font-black text-white mb-4">
-              TRUSTED BY <span className="text-transparent bg-clip-text bg-gradient-to-r from-beechwood-sage to-beechwood-lime">INNOVATORS</span>
-            </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-gray-400">
-              What our partners say about the revolution
-            </motion.p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Sarah Chen",
-                role: "CTO, TechVentures",
-                content: "Beechwood OS transformed our operations. The AI agents handle tasks we didn't think were possible to automate. Game-changer.",
-                rating: 5
-              },
-              {
-                name: "Marcus Rodriguez",
-                role: "Founder, RetailPro",
-                content: "Visual Counter gave us insights we never had before. Foot traffic analytics helped us optimize staffing and increase revenue by 23%.",
-                rating: 5
-              },
-              {
-                name: "Alex Thompson",
-                role: "Operations Manager",
-                content: "Clock Work cut our scheduling time by 70%. The AI optimization is incredibly accurate and our team loves the mobile app.",
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-beechwood-main/30 rounded-2xl p-8 hover:border-beechwood-main/50 transition-all"
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-300 mb-6 leading-relaxed italic">
-                  "{testimonial.content}"
-                </p>
-                <div>
-                  <div className="font-bold text-white">{testimonial.name}</div>
-                  <div className="text-gray-500 text-sm">{testimonial.role}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Why Choose Us - NEW */}
       <div className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
@@ -555,14 +523,30 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative border-t border-beechwood-main/20 py-12 px-4 sm:px-6 lg:px-8 z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <BeechwoodLogo size={32} variant="icon" />
-            <span className="bg-gradient-to-r from-beechwood-sage to-beechwood-lime bg-clip-text text-transparent font-bold">beechwood.ai</span>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+            <div className="flex items-center gap-3">
+              <BeechwoodLogo size={32} variant="icon" />
+              <span className="bg-gradient-to-r from-beechwood-sage to-beechwood-lime bg-clip-text text-transparent font-bold">beechwood.ai</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400">
+              <Link href="/products/visual-counter" className="hover:text-beechwood-sage transition-colors">Visual Counter</Link>
+              <span>|</span>
+              <Link href="/products/i65sports" className="hover:text-beechwood-sage transition-colors">i65sports</Link>
+              <span>|</span>
+              <Link href="/products/where2gonashville" className="hover:text-beechwood-sage transition-colors">Where2Go</Link>
+              <span>|</span>
+              <span className="text-gray-500">More Coming Soon</span>
+            </div>
           </div>
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Beechwood. Revolutionizing Technology.
-          </p>
+          <div className="text-center">
+            <p className="text-gray-500 text-sm mb-2">
+              © {new Date().getFullYear()} Beechwood LLC. Building Practical AI Solutions.
+            </p>
+            <p className="text-gray-500 text-sm">
+              Nashville, Tennessee
+            </p>
+          </div>
         </div>
       </footer>
     </div>
